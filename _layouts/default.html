@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="wordmark" href="{{ '/' | relative_url }}">CRITICI <span>DA</span> BAR</a>
+    <nav class="topnav">
+      <a href="{{ '/' | relative_url }}#menu">Il menù</a>
+      <a href="{{ '/' | relative_url }}#chisiamo">Chi siamo</a>
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer class="footer">
+    <p class="footer-line">CRITICI DA BAR — cinema, anime e pop culture. Senza filtri.</p>
+    <p class="footer-links">
+      <a href="https://instagram.com/criticidabar">Instagram</a> ·
+      <a href="#">YouTube</a> ·
+      <a href="#">Spotify</a> ·
+      <a href="#">TikTok</a>
+    </p>
+  </footer>
+
+</body>
+</html>

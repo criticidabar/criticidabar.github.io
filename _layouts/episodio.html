@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<article class="episodio">
+  <p class="eyebrow">Dal bancone</p>
+  <h1 class="ep-title">{{ page.title }}</h1>
+  {% if page.date %}<p class="ep-date">{{ page.date | date: "%d/%m/%Y" }}</p>{% endif %}
+
+  {% if page.embed %}
+  <div class="ep-embed">{{ page.embed }}</div>
+  {% endif %}
+
+  <div class="ep-body">
+    {{ content }}
+  </div>
+
+  <aside class="ep-cta">
+    <p>Ti è piaciuto? Il resto sta qui:</p>
+    <div class="cta-row">
+      <a class="btn btn-ig" href="https://instagram.com/criticidabar">Instagram</a>
+      <a class="btn btn-yt" href="#">YouTube</a>
+    </div>
+  </aside>
+</article>
