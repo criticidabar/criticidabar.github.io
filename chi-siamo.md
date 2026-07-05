@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Chi siamo — Critici da Bar: il podcast su cinema, anime e pop culture"
-description: "Cos'è Critici da Bar, chi sono Francesco e Sal, dove ascoltare il podcast e come contattarci per collaborazioni."
+description: "Cos'è Critici da Bar, chi sono Francesco e Salvatore, dove ascoltare il podcast e come contattarci per collaborazioni."
 permalink: /chi-siamo/
 ---
 
@@ -23,7 +23,7 @@ permalink: /chi-siamo/
       "name": "Chi sono i Critici da Bar?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Francesco e Sal, due amici appassionati di cinema, anime e cultura pop. Non sono critici di professione, ed è esattamente il punto: le loro discussioni sono quelle che chiunque farebbe al bar con gli amici — solo che loro le registrano."
+        "text": "Francesco e Salvatore, due amici appassionati di cinema, anime e cultura pop. Non sono critici di professione, ed è esattamente il punto: le loro discussioni sono quelle che chiunque farebbe al bar con gli amici — solo che loro le registrano."
       }
     },
     {
