@@ -1,0 +1,10 @@
+title: Critici da Bar
+description: Cinema, anime e pop culture — come ne parleresti al bar
+lang: it
+url: "https://criticidabar.github.io"
+
+theme: minima
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
