@@ -1,6 +1,28 @@
 ---
 layout: default
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PodcastEpisode",
+  "name": {{ page.title | jsonify }},
+  {% if page.date %}"datePublished": "{{ page.date | date_to_xmlschema }}",{% endif %}
+  {% if page.description %}"description": {{ page.description | jsonify }},{% endif %}
+  {% if page.youtube_url %}"url": {{ page.youtube_url | jsonify }},{% endif %}
+  "partOfSeries": {
+    "@type": "PodcastSeries",
+    "name": "Critici da Bar",
+    "url": "{{ site.url }}",
+    "sameAs": [
+      "https://www.youtube.com/@CriticiDaBar",
+      "https://open.spotify.com/show/6aKuL8AKQqtmfGRu4bWMzF",
+      "https://instagram.com/criticidabar",
+      "https://www.tiktok.com/@criticidabar"
+    ]
+  }
+}
+</script>
+
 <article class="episodio">
   <p class="eyebrow">Dal bancone</p>
   <h1 class="ep-title">{{ page.title }}</h1>
@@ -18,7 +40,7 @@ layout: default
     <p>Ti è piaciuto? Il resto sta qui:</p>
     <div class="cta-row">
       <a class="btn btn-ig" href="https://instagram.com/criticidabar">Instagram</a>
-      <a class="btn btn-yt" href="#">YouTube</a>
+      <a class="btn btn-yt" href="https://www.youtube.com/@CriticiDaBar">YouTube</a>
     </div>
   </aside>
 </article>

@@ -213,3 +213,9 @@ a:focus-visible {
   .menu li .voce { font-size: 1.25rem; }
   .menu li { flex-wrap: wrap; }
 }
+
+/* ---------- Logo ---------- */
+.logo { height: 44px; display: block; }
+@media (max-width: 540px) {
+  .logo { height: 38px; }
+}
