@@ -1,7 +1,7 @@
-const CACHE = 'cdb-studio-v0.2';
+const CACHE = 'cdb-studio-v0.3.0';
 const CORE = [
-  './', './index.html', './styles.css', './app.js', './auth.js',
-  './manifest.webmanifest', './assets/logo.png', './assets/icon-192.png', './assets/icon-512.png'
+  './', './index.html', './styles.css?v=0.3.0', './app.js?v=0.3.0', './auth.js?v=0.3.0',
+  './manifest.webmanifest?v=0.3.0', './assets/logo.png', './assets/icon-192.png', './assets/icon-512.png'
 ];
 
 self.addEventListener('install', event => {
@@ -14,21 +14,37 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
+self.addEventListener('message', event => {
+  if (event.data === 'SKIP_WAITING') self.skipWaiting();
+});
+
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
-  event.respondWith((async () => {
-    const cached = await caches.match(event.request);
-    if (cached) return cached;
-    try {
-      const response = await fetch(event.request);
-      if (response && (response.ok || response.type === 'opaque')) {
-        const cache = await caches.open(CACHE);
-        cache.put(event.request, response.clone()).catch(() => {});
+  const url = new URL(event.request.url);
+
+  // File dell'app: rete prima, così gli aggiornamenti non restano bloccati nella vecchia cache.
+  if (url.origin === self.location.origin) {
+    event.respondWith((async () => {
+      try {
+        const response = await fetch(event.request, { cache: 'no-store' });
+        if (response.ok) {
+          const cache = await caches.open(CACHE);
+          cache.put(event.request, response.clone()).catch(() => {});
+        }
+        return response;
+      } catch (error) {
+        const cached = await caches.match(event.request, { ignoreSearch: true });
+        if (cached) return cached;
+        if (event.request.mode === 'navigate') return caches.match('./index.html');
+        throw error;
       }
-      return response;
-    } catch (error) {
-      if (event.request.mode === 'navigate') return caches.match('./index.html');
-      throw error;
-    }
-  })());
+    })());
+    return;
+  }
+
+  // Risorse esterne (font): cache dopo il primo caricamento.
+  event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).then(response => {
+    if (response && (response.ok || response.type === 'opaque')) caches.open(CACHE).then(cache => cache.put(event.request, response.clone())).catch(() => {});
+    return response;
+  })));
 });

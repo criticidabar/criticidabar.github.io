@@ -1,19 +1,31 @@
-# Pubblicazione su GitHub Pages
+# Aggiornamento su GitHub Pages
 
-Carica l’intera cartella `cdb-studio-2326577d` nella root del repository `criticidabar.github.io`.
+Nel repository `criticidabar.github.io`, sostituisci il contenuto della cartella:
 
-L’indirizzo sarà:
-
+```text
+cdb-studio-2326577d/
 ```
+
+con i file di questa versione, mantenendo invariato il nome della cartella.
+
+L'indirizzo resta:
+
+```text
 https://criticidabar.github.io/cdb-studio-2326577d/
 ```
 
-Non aggiungere link dal sito pubblico. La pagina contiene `noindex`, il nome della cartella è casuale e al primo avvio chiede di impostare un PIN locale.
+## Dopo il push
 
-Dopo la prima apertura da Safari:
+La v0.2 aveva una cache molto aggressiva. Alla prima apertura della v0.3:
 
-1. imposta il PIN;
-2. usa **Condividi → Aggiungi alla schermata Home**;
-3. riapri dall’icona CdB Studio.
+1. apri l'indirizzo aggiungendo `?v=3` alla fine;
+2. esegui un ricaricamento forzato (`⌘ ⇧ R` su Mac);
+3. se compare ancora `v0.2` nella barra superiore, chiudi la scheda e riaprila una seconda volta.
 
-Il PIN e i progetti sono memorizzati sul singolo browser/dispositivo. Su un nuovo dispositivo dovrai impostare un nuovo PIN e importare il file progetto.
+La v0.3 usa una strategia rete-prima e gli aggiornamenti successivi non dovrebbero più restare bloccati allo stesso modo.
+
+## iPhone
+
+Dopo aver verificato che in alto compaia `v0.3`, elimina eventualmente la vecchia icona dalla schermata Home e aggiungila di nuovo da Safari tramite **Condividi → Aggiungi alla schermata Home**.
+
+Il PIN, i progetti, l'archivio immagini e i template personali sono locali al singolo browser. La sostituzione dei file nel repository non li cancella normalmente, perché l'indirizzo dell'app resta identico.

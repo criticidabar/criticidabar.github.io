@@ -11,13 +11,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CdB Studio">
-  <title>CdB Studio Mobile</title>
-  <link rel="manifest" href="manifest.webmanifest">
+  <title>CdB Studio</title>
+  <link rel="manifest" href="manifest.webmanifest?v=0.3.0">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Archivo:wdth,wght@62..125,100..900&family=Saira:wdth,wght@50..125,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=0.3.0">
 </head>
 <body class="locked">
   <section id="authGate" class="auth-gate" aria-labelledby="authTitle">
@@ -27,14 +27,8 @@
       <h1 id="authTitle">CdB Studio</h1>
       <p id="authCopy" class="auth-copy">Scegli un PIN locale per proteggere l’editor su questo dispositivo.</p>
       <form id="pinForm" novalidate>
-        <label class="pin-field">
-          <span id="pinLabel">Nuovo PIN</span>
-          <input id="pinInput" type="password" inputmode="numeric" pattern="[0-9]*" minlength="4" maxlength="8" autocomplete="off" enterkeyhint="next" aria-describedby="pinHint pinMessage">
-        </label>
-        <label id="pinConfirmWrap" class="pin-field">
-          <span>Ripeti PIN</span>
-          <input id="pinConfirm" type="password" inputmode="numeric" pattern="[0-9]*" minlength="4" maxlength="8" autocomplete="off" enterkeyhint="done">
-        </label>
+        <label class="pin-field"><span id="pinLabel">Nuovo PIN</span><input id="pinInput" type="password" inputmode="numeric" pattern="[0-9]*" minlength="4" maxlength="8" autocomplete="off" enterkeyhint="next" aria-describedby="pinHint pinMessage"></label>
+        <label id="pinConfirmWrap" class="pin-field"><span>Ripeti PIN</span><input id="pinConfirm" type="password" inputmode="numeric" pattern="[0-9]*" minlength="4" maxlength="8" autocomplete="off" enterkeyhint="done"></label>
         <button id="pinSubmit" class="primary auth-submit" type="submit">Imposta PIN</button>
       </form>
       <p id="pinHint" class="auth-hint">Da 4 a 8 cifre. Il PIN resta solo nel browser: non è un’autenticazione server.</p>
@@ -44,10 +38,7 @@
 
   <div id="appShell" class="app-shell" hidden>
     <header class="topbar">
-      <div>
-        <strong>CdB Studio</strong>
-        <span id="saveStatus">salvato sul dispositivo</span>
-      </div>
+      <div><strong>CdB Studio <small>v0.3</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
       <div class="top-actions">
         <button id="undoBtn" class="icon-btn" type="button" aria-label="Annulla" title="Annulla">↶</button>
         <button id="redoBtn" class="icon-btn" type="button" aria-label="Ripeti" title="Ripeti">↷</button>
@@ -66,11 +57,7 @@
         <div id="stage" class="stage">
           <svg id="canvas" viewBox="0 0 1080 1350" role="img" aria-label="Anteprima della slide"></svg>
         </div>
-        <div class="gesture-help">
-          <span>1 dito: sposta</span>
-          <span>2 dita: ridimensiona</span>
-          <span>maniglia: scala precisa</span>
-        </div>
+        <div class="gesture-help"><span>Trascina: sposta</span><span>Pinch/maniglia: ridimensiona</span><span>Doppio tap: modifica testo</span></div>
       </section>
 
       <section class="filmstrip-wrap" aria-label="Slide del carosello">
@@ -87,95 +74,71 @@
 
       <section class="bottom-panel">
         <nav class="tabs" aria-label="Pannelli editor">
-          <button class="active" data-tab="content" type="button">Contenuto</button>
+          <button class="active" data-tab="content" type="button">Testi</button>
+          <button data-tab="images" type="button">Immagini</button>
           <button data-tab="style" type="button">Stile</button>
-          <button data-tab="slide" type="button">Slide</button>
+          <button data-tab="template" type="button">Template</button>
           <button data-tab="export" type="button">Esporta</button>
         </nav>
 
         <div id="tab-content" class="tab-panel active">
-          <label class="field">
-            <span>Titolo</span>
-            <textarea id="titleInput" rows="3" placeholder="Scrivi il titolo"></textarea>
-          </label>
-          <label class="field">
-            <span>Testo secondario</span>
-            <textarea id="subtitleInput" rows="4" placeholder="Scrivi il testo"></textarea>
-          </label>
+          <label class="field"><span>Titolo</span><textarea id="titleInput" rows="3" placeholder="Scrivi il titolo"></textarea></label>
+          <label class="field"><span>Testo secondario</span><textarea id="subtitleInput" rows="4" placeholder="Scrivi il testo"></textarea></label>
+          <details class="advanced-fields">
+            <summary>Campi aggiuntivi del template</summary>
+            <label class="field"><span>Kicker / etichetta</span><input id="kickerInput" type="text" placeholder="Es. OPINIONI SHOT"></label>
+            <label class="field"><span>Data / dettaglio</span><input id="dateInput" type="text" placeholder="Es. DAL 18 LUGLIO"></label>
+            <label class="field"><span>Fumetto / CTA</span><input id="bubbleInput" type="text" placeholder="Es. VOI COSA NE PENSATE?"></label>
+          </details>
+          <div class="button-row"><button id="fitTextBtn" class="primary" type="button">Adatta testo</button><button id="editSelectedTextBtn" type="button">Modifica selezionato</button></div>
+        </div>
+
+        <div id="tab-images" class="tab-panel">
           <div class="button-row">
-            <label class="primary file-btn">
-              Scegli immagine
-              <input id="imageInput" type="file" accept="image/*">
-            </label>
-            <button id="removeImageBtn" type="button">Rimuovi</button>
+            <label class="primary file-btn">Carica dal telefono<input id="imageInput" type="file" accept="image/*"></label>
+            <button id="removeImageBtn" type="button">Rimuovi dalla slide</button>
           </div>
+          <div class="search-box">
+            <label class="field"><span>Ricerca immagini</span><input id="imageSearchInput" type="search" placeholder="Film, attore, regista…" enterkeyhint="search"></label>
+            <div class="button-row"><button id="searchImagesBtn" class="primary" type="button">Cerca</button><button id="openGoogleImagesBtn" type="button">Google Immagini ↗</button></div>
+            <p class="panel-note">La ricerca interna usa Wikimedia Commons, senza chiavi API. Per immagini promozionali o locandine può essere più limitata.</p>
+            <div id="imageSearchStatus" class="inline-status"></div>
+            <div id="imageSearchResults" class="image-grid"></div>
+          </div>
+          <div class="url-import">
+            <label class="field"><span>Importa da URL diretto</span><input id="imageUrlInput" type="url" inputmode="url" placeholder="https://…/immagine.jpg"></label>
+            <button id="importImageUrlBtn" type="button">Importa URL</button>
+          </div>
+          <div class="library-head"><h3>Archivio immagini</h3><button id="clearLibraryBtn" class="ghost danger-text" type="button">Svuota</button></div>
+          <div id="imageLibrary" class="image-grid"><p class="panel-note">Nessuna immagine salvata.</p></div>
         </div>
 
         <div id="tab-style" class="tab-panel">
           <div class="control-grid">
-            <label class="field">
-              <span>Font</span>
-              <select id="fontSelect">
-                <option value="Anybody">Anybody</option>
-                <option value="Archivo">Archivo</option>
-                <option value="Saira">Saira</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Colore</span>
-              <input id="colorInput" type="color" value="#fff6ea">
-            </label>
+            <label class="field"><span>Font</span><select id="fontSelect"><option value="Anybody">Anybody</option><option value="Archivo">Archivo</option><option value="Saira">Saira</option></select></label>
+            <label class="field"><span>Colore</span><input id="colorInput" type="color" value="#fff6ea"></label>
           </div>
-
-          <label class="slider-field">
-            <span>Dimensione <output id="sizeOut">92</output></span>
-            <input id="sizeRange" type="range" min="24" max="180" value="92">
-          </label>
-          <label class="slider-field">
-            <span>Peso <output id="weightOut">850</output></span>
-            <input id="weightRange" type="range" min="300" max="900" step="10" value="850">
-          </label>
-          <label class="slider-field">
-            <span>Larghezza <output id="widthOut">90%</output></span>
-            <input id="widthRange" type="range" min="60" max="125" value="90">
-          </label>
-          <label class="slider-field">
-            <span>Interlinea <output id="lineOut">0.92</output></span>
-            <input id="lineRange" type="range" min="70" max="140" value="92">
-          </label>
-          <label class="slider-field">
-            <span>Scala elemento <output id="scaleOut">100%</output></span>
-            <input id="scaleRange" type="range" min="20" max="400" value="100">
-          </label>
-          <div class="button-row">
-            <button id="fitTextBtn" class="primary" type="button">Adatta testo</button>
-            <button id="resetTransformBtn" type="button">Ripristina posizione</button>
-          </div>
-          <div class="button-row two compact-actions">
-            <button id="centerHBtn" type="button">Centra ↔</button>
-            <button id="centerVBtn" type="button">Centra ↕</button>
-          </div>
+          <label class="slider-field"><span>Dimensione <output id="sizeOut">92</output></span><input id="sizeRange" type="range" min="20" max="220" value="92"></label>
+          <label class="slider-field"><span>Peso <output id="weightOut">850</output></span><input id="weightRange" type="range" min="300" max="900" step="10" value="850"></label>
+          <label class="slider-field"><span>Larghezza <output id="widthOut">90%</output></span><input id="widthRange" type="range" min="50" max="140" value="90"></label>
+          <label class="slider-field"><span>Interlinea <output id="lineOut">0.92</output></span><input id="lineRange" type="range" min="65" max="150" value="92"></label>
+          <label class="slider-field"><span>Scala elemento <output id="scaleOut">100%</output></span><input id="scaleRange" type="range" min="15" max="500" value="100"></label>
+          <div class="button-row"><button id="fitTextStyleBtn" class="primary" type="button">Adatta testo</button><button id="resetTransformBtn" type="button">Ripristina</button></div>
+          <div class="button-row two compact-actions"><button id="centerHBtn" type="button">Centra ↔</button><button id="centerVBtn" type="button">Centra ↕</button></div>
+          <div class="button-row"><button id="applyStyleToTitlesBtn" type="button">Applica a tutti i titoli</button><button id="applyStyleToTextsBtn" type="button">Applica a tutti i testi</button></div>
         </div>
 
-        <div id="tab-slide" class="tab-panel">
-          <label class="field">
-            <span>Tipo di slide</span>
-            <select id="templateSelect">
-              <option value="cover">Copertina</option>
-              <option value="body">Corpo</option>
-              <option value="question">Domanda</option>
-              <option value="final">Finale</option>
-            </select>
-          </label>
-          <div class="button-row">
-            <button id="duplicateSlideBtn" class="primary" type="button">Duplica slide</button>
-            <button id="deleteSlideBtn" class="danger" type="button">Elimina slide</button>
+        <div id="tab-template" class="tab-panel">
+          <div class="control-grid">
+            <label class="field"><span>Famiglia</span><select id="familySelect"></select></label>
+            <label class="field"><span>Variante</span><select id="variantSelect"></select></label>
           </div>
-          <div class="button-row">
-            <button id="moveLeftBtn" type="button">Sposta prima</button>
-            <button id="moveRightBtn" type="button">Sposta dopo</button>
-          </div>
-          <p class="panel-note">Questa prima base include quattro layout mobile. Le 17 varianti dell’app Mac verranno trasferite sullo stesso motore.</p>
+          <div id="variantCards" class="variant-cards"></div>
+          <div class="button-row"><button id="duplicateSlideBtn" class="primary" type="button">Duplica slide</button><button id="deleteSlideBtn" class="danger" type="button">Elimina slide</button></div>
+          <div class="button-row"><button id="moveLeftBtn" type="button">Sposta prima</button><button id="moveRightBtn" type="button">Sposta dopo</button></div>
+          <hr class="soft-separator">
+          <div class="personal-template-head"><h3>Template personali</h3><button id="savePersonalTemplateBtn" class="primary" type="button">Salva impostazione</button></div>
+          <div id="personalTemplates" class="personal-templates"><p class="panel-note">Nessun template personale.</p></div>
         </div>
 
         <div id="tab-export" class="tab-panel">
@@ -185,12 +148,9 @@
             <button id="exportSvgBtn" type="button">SVG modificabile</button>
             <button id="exportAllBtn" class="primary" type="button">ZIP carosello</button>
             <button id="exportProjectBtn" type="button">Salva progetto</button>
-            <label class="file-btn">
-              Apri progetto
-              <input id="projectInput" type="file" accept="application/json,.json,.cdb.json">
-            </label>
+            <label class="file-btn">Apri progetto<input id="projectInput" type="file" accept="application/json,.json,.cdb.json"></label>
           </div>
-          <p class="panel-note">Il PNG è pronto da pubblicare. L’SVG conserva testi e livelli, ma un programma esterno deve avere il font disponibile per mantenerli identici.</p>
+          <p class="panel-note">Il PNG è il formato pronto da pubblicare. L’SVG conserva testi e livelli; il programma che lo apre deve avere il font disponibile.</p>
         </div>
       </section>
     </main>
@@ -199,18 +159,22 @@
   <dialog id="projectDialog">
     <form method="dialog">
       <h2>Progetto</h2>
-      <label class="field">
-        <span>Nome progetto</span>
-        <input id="projectNameInput" type="text" value="Nuovo carosello">
-      </label>
+      <label class="field"><span>Nome progetto</span><input id="projectNameInput" type="text" value="Nuovo carosello"></label>
       <button id="newProjectBtn" type="button">Nuovo progetto</button>
       <button value="cancel">Chiudi</button>
     </form>
   </dialog>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="textDialog">
+    <form method="dialog">
+      <h2 id="textDialogTitle">Modifica testo</h2>
+      <label class="field"><span>Contenuto</span><textarea id="textDialogInput" rows="7"></textarea></label>
+      <div class="button-row"><button id="textDialogSave" class="primary" value="default">Salva</button><button value="cancel">Annulla</button></div>
+    </form>
+  </dialog>
 
-  <script src="app.js"></script>
-  <script src="auth.js"></script>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js?v=0.3.0"></script>
+  <script src="auth.js?v=0.3.0"></script>
 </body>
 </html>

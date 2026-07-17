@@ -43,3 +43,41 @@ dialog{width:min(calc(100% - 28px),420px);border:1px solid #444;border-radius:18
 body.locked{overflow:hidden}.compact-actions{margin-top:8px}.button-row.two>*{flex:1}
 .field input[type=text],.field select,.field textarea,.pin-field input{font-size:16px}.pin-field input{font-size:24px}
 @media(max-width:390px){.auth-card{padding:21px 17px}.auth-logo{width:102px}.auth-card h1{font-size:30px}}
+
+/* v0.3 — immagini, famiglie e template personali */
+.topbar strong small{font-size:10px;color:var(--orange);vertical-align:middle;margin-left:4px}
+.tabs{grid-template-columns:repeat(5,1fr)}
+.field input[type=search],.field input[type=url],.field input[type=text]{width:100%;border:1px solid #444;border-radius:12px;background:#0f0f0f;color:#f7f7f7;padding:11px 12px;outline:none;font-size:16px}
+.field input[type=search]:focus,.field input[type=url]:focus{border-color:var(--orange)}
+.advanced-fields{margin:4px 0 14px;border:1px solid #353535;border-radius:13px;background:#171717;padding:0 11px}
+.advanced-fields summary{cursor:pointer;padding:11px 2px;color:#cfcfcf;font-size:12px;font-weight:800}
+.advanced-fields[open]{padding-bottom:2px}
+.search-box,.url-import{margin-top:14px;padding:13px;border:1px solid #343434;border-radius:15px;background:#161616}
+.url-import button{width:100%}
+.inline-status{min-height:18px;margin:7px 0;color:#bcbcbc;font-size:12px}
+.inline-status.error{color:#ff8e8e}.inline-status.success{color:#9fe2bd}
+.image-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.image-card{position:relative;aspect-ratio:1/1;border:1px solid #3d3d3d;border-radius:12px;overflow:hidden;background:#090909;padding:0;min-height:0}
+.image-card img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.image-card .image-meta{position:absolute;inset:auto 4px 4px 4px;padding:4px 5px;border-radius:7px;background:rgba(0,0,0,.74);font-size:9px;line-height:1.15;text-align:left;color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.image-card .delete-image{position:absolute;right:4px;top:4px;width:28px;height:28px;min-height:0;padding:0;border-radius:50%;background:rgba(0,0,0,.76);border-color:#777;color:#fff;font-size:15px;z-index:2}
+.library-head,.personal-template-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}
+.library-head h3,.personal-template-head h3{margin:0;font-size:15px}
+.ghost{background:transparent}.danger-text{color:#ff9292}
+.variant-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:2px 0 14px}
+.variant-card{display:block;min-height:76px;padding:10px;border:1px solid #3b3b3b;border-radius:13px;background:#151515;text-align:left}
+.variant-card strong{display:block;color:#fff;font-size:12px}.variant-card span{display:block;margin-top:5px;color:#9f9f9f;font-size:10px;line-height:1.3}
+.variant-card.active{border-color:var(--orange);box-shadow:inset 0 0 0 1px var(--orange);background:#261b13}
+.soft-separator{border:0;border-top:1px solid #353535;margin:16px 0}
+.personal-templates{display:grid;gap:8px;margin-top:10px}
+.personal-template{display:flex;gap:8px;align-items:center;padding:9px;border:1px solid #3a3a3a;border-radius:12px;background:#151515}
+.personal-template .personal-info{flex:1;min-width:0}.personal-template strong{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.personal-template small{display:block;margin-top:3px;color:#999;font-size:10px}
+.personal-template button{min-height:36px;padding:5px 9px;font-size:10px}
+@media(min-width:900px){
+  .app-shell{width:min(100%,1180px)}
+  .app-shell main{display:grid;grid-template-columns:minmax(420px,560px) minmax(380px,1fr);grid-template-areas:"stage panel" "film panel" "elements panel";align-items:start;column-gap:12px;padding:10px 12px 28px}
+  .stage-wrap{grid-area:stage;position:sticky;top:74px}.filmstrip-wrap{grid-area:film}.element-bar{grid-area:elements}.bottom-panel{grid-area:panel;margin:8px 0 0;position:sticky;top:78px;max-height:calc(100vh - 94px);overflow:auto}
+  .stage{width:min(100%,520px)}
+  .image-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:420px){.image-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.variant-cards{grid-template-columns:1fr}.tabs button{font-size:10px}}
