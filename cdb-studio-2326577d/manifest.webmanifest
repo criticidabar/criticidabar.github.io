@@ -1,0 +1,26 @@
+{
+  "name": "CdB Studio Privato",
+  "short_name": "CdB Studio",
+  "description": "Editor mobile privato per caroselli Critici da Bar",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "id": "./",
+  "scope": "./",
+  "orientation": "portrait-primary"
+}

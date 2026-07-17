@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#111111">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+  <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+  <meta name="bingbot" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+  <meta name="referrer" content="no-referrer">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CdB Studio">
+  <title>CdB Studio Mobile</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Archivo:wdth,wght@62..125,100..900&family=Saira:wdth,wght@50..125,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="locked">
+  <section id="authGate" class="auth-gate" aria-labelledby="authTitle">
+    <div class="auth-card">
+      <img src="assets/logo.png" alt="Critici da Bar" class="auth-logo">
+      <p class="auth-kicker">Area personale</p>
+      <h1 id="authTitle">CdB Studio</h1>
+      <p id="authCopy" class="auth-copy">Scegli un PIN locale per proteggere l’editor su questo dispositivo.</p>
+      <form id="pinForm" novalidate>
+        <label class="pin-field">
+          <span id="pinLabel">Nuovo PIN</span>
+          <input id="pinInput" type="password" inputmode="numeric" pattern="[0-9]*" minlength="4" maxlength="8" autocomplete="off" enterkeyhint="next" aria-describedby="pinHint pinMessage">
+        </label>
+        <label id="pinConfirmWrap" class="pin-field">
+          <span>Ripeti PIN</span>
+          <input id="pinConfirm" type="password" inputmode="numeric" pattern="[0-9]*" minlength="4" maxlength="8" autocomplete="off" enterkeyhint="done">
+        </label>
+        <button id="pinSubmit" class="primary auth-submit" type="submit">Imposta PIN</button>
+      </form>
+      <p id="pinHint" class="auth-hint">Da 4 a 8 cifre. Il PIN resta solo nel browser: non è un’autenticazione server.</p>
+      <p id="pinMessage" class="auth-message" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <div id="appShell" class="app-shell" hidden>
+    <header class="topbar">
+      <div>
+        <strong>CdB Studio</strong>
+        <span id="saveStatus">salvato sul dispositivo</span>
+      </div>
+      <div class="top-actions">
+        <button id="undoBtn" class="icon-btn" type="button" aria-label="Annulla" title="Annulla">↶</button>
+        <button id="redoBtn" class="icon-btn" type="button" aria-label="Ripeti" title="Ripeti">↷</button>
+        <button id="lockBtn" class="icon-btn" type="button" aria-label="Blocca app" title="Blocca app">▣</button>
+        <button id="moreBtn" class="icon-btn" type="button" aria-label="Progetto" title="Progetto">•••</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="stage-wrap" aria-label="Editor slide">
+        <div class="stage-toolbar">
+          <button id="prevSlideBtn" type="button" aria-label="Slide precedente">‹</button>
+          <span id="slideCounter">1 / 1</span>
+          <button id="nextSlideBtn" type="button" aria-label="Slide successiva">›</button>
+        </div>
+        <div id="stage" class="stage">
+          <svg id="canvas" viewBox="0 0 1080 1350" role="img" aria-label="Anteprima della slide"></svg>
+        </div>
+        <div class="gesture-help">
+          <span>1 dito: sposta</span>
+          <span>2 dita: ridimensiona</span>
+          <span>maniglia: scala precisa</span>
+        </div>
+      </section>
+
+      <section class="filmstrip-wrap" aria-label="Slide del carosello">
+        <div id="filmstrip" class="filmstrip"></div>
+        <button id="addSlideBtn" class="add-slide" type="button">＋</button>
+      </section>
+
+      <section class="element-bar" aria-label="Elemento selezionato">
+        <button data-select="image" type="button">Immagine</button>
+        <button data-select="title" type="button">Titolo</button>
+        <button data-select="subtitle" type="button">Testo</button>
+        <button data-select="logo" type="button">Logo</button>
+      </section>
+
+      <section class="bottom-panel">
+        <nav class="tabs" aria-label="Pannelli editor">
+          <button class="active" data-tab="content" type="button">Contenuto</button>
+          <button data-tab="style" type="button">Stile</button>
+          <button data-tab="slide" type="button">Slide</button>
+          <button data-tab="export" type="button">Esporta</button>
+        </nav>
+
+        <div id="tab-content" class="tab-panel active">
+          <label class="field">
+            <span>Titolo</span>
+            <textarea id="titleInput" rows="3" placeholder="Scrivi il titolo"></textarea>
+          </label>
+          <label class="field">
+            <span>Testo secondario</span>
+            <textarea id="subtitleInput" rows="4" placeholder="Scrivi il testo"></textarea>
+          </label>
+          <div class="button-row">
+            <label class="primary file-btn">
+              Scegli immagine
+              <input id="imageInput" type="file" accept="image/*">
+            </label>
+            <button id="removeImageBtn" type="button">Rimuovi</button>
+          </div>
+        </div>
+
+        <div id="tab-style" class="tab-panel">
+          <div class="control-grid">
+            <label class="field">
+              <span>Font</span>
+              <select id="fontSelect">
+                <option value="Anybody">Anybody</option>
+                <option value="Archivo">Archivo</option>
+                <option value="Saira">Saira</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Colore</span>
+              <input id="colorInput" type="color" value="#fff6ea">
+            </label>
+          </div>
+
+          <label class="slider-field">
+            <span>Dimensione <output id="sizeOut">92</output></span>
+            <input id="sizeRange" type="range" min="24" max="180" value="92">
+          </label>
+          <label class="slider-field">
+            <span>Peso <output id="weightOut">850</output></span>
+            <input id="weightRange" type="range" min="300" max="900" step="10" value="850">
+          </label>
+          <label class="slider-field">
+            <span>Larghezza <output id="widthOut">90%</output></span>
+            <input id="widthRange" type="range" min="60" max="125" value="90">
+          </label>
+          <label class="slider-field">
+            <span>Interlinea <output id="lineOut">0.92</output></span>
+            <input id="lineRange" type="range" min="70" max="140" value="92">
+          </label>
+          <label class="slider-field">
+            <span>Scala elemento <output id="scaleOut">100%</output></span>
+            <input id="scaleRange" type="range" min="20" max="400" value="100">
+          </label>
+          <div class="button-row">
+            <button id="fitTextBtn" class="primary" type="button">Adatta testo</button>
+            <button id="resetTransformBtn" type="button">Ripristina posizione</button>
+          </div>
+          <div class="button-row two compact-actions">
+            <button id="centerHBtn" type="button">Centra ↔</button>
+            <button id="centerVBtn" type="button">Centra ↕</button>
+          </div>
+        </div>
+
+        <div id="tab-slide" class="tab-panel">
+          <label class="field">
+            <span>Tipo di slide</span>
+            <select id="templateSelect">
+              <option value="cover">Copertina</option>
+              <option value="body">Corpo</option>
+              <option value="question">Domanda</option>
+              <option value="final">Finale</option>
+            </select>
+          </label>
+          <div class="button-row">
+            <button id="duplicateSlideBtn" class="primary" type="button">Duplica slide</button>
+            <button id="deleteSlideBtn" class="danger" type="button">Elimina slide</button>
+          </div>
+          <div class="button-row">
+            <button id="moveLeftBtn" type="button">Sposta prima</button>
+            <button id="moveRightBtn" type="button">Sposta dopo</button>
+          </div>
+          <p class="panel-note">Questa prima base include quattro layout mobile. Le 17 varianti dell’app Mac verranno trasferite sullo stesso motore.</p>
+        </div>
+
+        <div id="tab-export" class="tab-panel">
+          <div class="export-grid">
+            <button id="exportPngBtn" class="primary" type="button">PNG slide</button>
+            <button id="sharePngBtn" type="button">Condividi PNG</button>
+            <button id="exportSvgBtn" type="button">SVG modificabile</button>
+            <button id="exportAllBtn" class="primary" type="button">ZIP carosello</button>
+            <button id="exportProjectBtn" type="button">Salva progetto</button>
+            <label class="file-btn">
+              Apri progetto
+              <input id="projectInput" type="file" accept="application/json,.json,.cdb.json">
+            </label>
+          </div>
+          <p class="panel-note">Il PNG è pronto da pubblicare. L’SVG conserva testi e livelli, ma un programma esterno deve avere il font disponibile per mantenerli identici.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="projectDialog">
+    <form method="dialog">
+      <h2>Progetto</h2>
+      <label class="field">
+        <span>Nome progetto</span>
+        <input id="projectNameInput" type="text" value="Nuovo carosello">
+      </label>
+      <button id="newProjectBtn" type="button">Nuovo progetto</button>
+      <button value="cancel">Chiudi</button>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
