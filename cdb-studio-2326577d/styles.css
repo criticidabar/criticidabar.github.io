@@ -182,3 +182,11 @@ body.locked{overflow:hidden}.compact-actions{margin-top:8px}.button-row.two>*{fl
 .json-file-divider::before,.json-file-divider::after{content:"";height:1px;flex:1;background:#353535}
 .content-json-card .inline-status{margin-top:10px}
 @media(max-width:620px){.json-paste-actions{grid-template-columns:1fr 1fr}.json-paste-actions #clearContentJsonBtn{grid-column:1/-1}.json-paste-field textarea{min-height:250px}}
+
+
+/* v0.18 · desktop naturale, elimina e clipboard elementi */
+.stage.dragging{cursor:grabbing;user-select:none}.stage.dragging svg{cursor:grabbing}
+.layer-head-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px}.layer-head-actions button{min-height:34px;padding:6px 9px;font-size:10px}
+.layer-row{grid-template-columns:auto auto minmax(0,1fr) auto auto auto}.layer-row .layer-delete{color:#ff9999;border-color:#5f2f2f;background:#2a1515}.layer-row .layer-delete:hover{background:#4a1e1e}
+.gesture-help{flex-wrap:wrap}.gesture-help span{white-space:nowrap}
+@media(max-width:620px){.layers-head{align-items:flex-start;flex-direction:column}.layer-head-actions{width:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.layer-head-actions button{padding:6px 4px;font-size:9px}.layer-row{grid-template-columns:auto auto minmax(0,1fr) auto auto auto}.gesture-help span:nth-child(2){display:none}}

@@ -12,12 +12,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CdB Studio">
   <title>CdB Studio</title>
-  <link rel="manifest" href="manifest.webmanifest?v=0.17.0">
+  <link rel="manifest" href="manifest.webmanifest?v=0.18.0">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Anybody:wdth,wght@50..150,100..900&family=Archivo:wdth,wght@62..125,100..900&family=Saira:wdth,wght@50..125,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=0.17.0">
+  <link rel="stylesheet" href="styles.css?v=0.18.0">
 </head>
 <body class="locked">
   <section id="authGate" class="auth-gate" aria-labelledby="authTitle">
@@ -38,7 +38,7 @@
 
   <div id="appShell" class="app-shell" hidden>
     <header class="topbar">
-      <div><strong>CdB Studio <small>v0.17</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
+      <div><strong>CdB Studio <small>v0.18</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
       <div class="top-actions">
         <button id="undoBtn" class="icon-btn" type="button" aria-label="Annulla" title="Annulla">↶</button>
         <button id="redoBtn" class="icon-btn" type="button" aria-label="Ripeti" title="Ripeti">↷</button>
@@ -57,7 +57,7 @@
         <div id="stage" class="stage">
           <svg id="canvas" viewBox="0 0 1080 1350" role="img" aria-label="Anteprima della slide"></svg>
         </div>
-        <div class="gesture-help"><span>Trascina nel riquadro: sposta</span><span>Angoli/pinch: ridimensiona</span><span>Maniglia blu: larghezza testo</span></div>
+        <div class="gesture-help"><span>Trascina l’elemento: sposta</span><span>Shift: asse bloccato · Alt: niente aggancio</span><span>Angoli/pinch: ridimensiona</span></div>
       </section>
 
       <section class="filmstrip-wrap" aria-label="Slide del carosello">
@@ -184,8 +184,8 @@
 
 
         <div id="tab-layers" class="tab-panel">
-          <div class="layers-head"><div><h3>Livelli della slide</h3><p id="layerSelectionState" class="panel-note">Visibile e modificabile</p></div><button id="duplicateElementBtn" class="primary" type="button">Duplica</button></div>
-          <p class="panel-note layer-help">Gli elementi più in alto nella lista appaiono davanti. Su Mac puoi trascinare le righe; da telefono usa i pulsanti.</p>
+          <div class="layers-head"><div><h3>Livelli della slide</h3><p id="layerSelectionState" class="panel-note">Visibile e modificabile</p></div><div class="layer-head-actions"><button id="copyElementBtn" type="button" title="Ctrl/Cmd + C">Copia</button><button id="pasteElementBtn" type="button" title="Ctrl/Cmd + V">Incolla</button><button id="duplicateElementBtn" class="primary" type="button" title="Ctrl/Cmd + D">Duplica</button><button id="deleteLayerElementBtn" class="danger" type="button" title="Canc/Delete">Elimina</button></div></div>
+          <p class="panel-note layer-help">Gli elementi più in alto appaiono davanti. Scorciatoie: Ctrl/Cmd+C/V, Ctrl/Cmd+Z, Canc/Delete e Ctrl/Cmd+D.</p>
           <div id="layerList" class="layer-list"></div>
           <div class="layer-actions-grid">
             <button id="layerFrontBtn" type="button">Porta davanti</button>
@@ -342,7 +342,7 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="app.js?v=0.17.0"></script>
-  <script src="auth.js?v=0.17.0"></script>
+  <script src="app.js?v=0.18.0"></script>
+  <script src="auth.js?v=0.18.0"></script>
 </body>
 </html>

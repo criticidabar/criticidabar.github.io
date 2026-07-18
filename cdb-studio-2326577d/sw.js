@@ -1,7 +1,7 @@
-const CACHE = 'cdb-studio-v0.17.0';
+const CACHE = 'cdb-studio-v0.18.0';
 const CORE = [
-  './', './index.html', './styles.css?v=0.17.0', './app.js?v=0.17.0', './auth.js?v=0.17.0',
-  './manifest.webmanifest?v=0.17.0', './assets/logo.png', './assets/icon-192.png', './assets/icon-512.png'
+  './', './index.html', './styles.css?v=0.18.0', './app.js?v=0.18.0', './auth.js?v=0.18.0',
+  './manifest.webmanifest?v=0.18.0', './assets/logo.png', './assets/icon-192.png', './assets/icon-512.png'
 ];
 
 self.addEventListener('install', event => {
