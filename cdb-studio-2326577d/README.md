@@ -1,10 +1,11 @@
-# CdB Studio v0.16
+# CdB Studio v0.17
 
-Aggiunge l’importazione diretta di JSON editoriali.
+Import JSON contenuto tramite incolla diretto o file.
 
-Formati supportati:
-- array con `slideType`, `mainText`, `subText`, `slideNumber`, `postLabel`, `imageQuery`;
-- oggetto `content-json` con `slides`, `title.text`, `subtitle.text`, `familyHint` e `templateHint`;
-- progetti `.cdb.json` delle versioni precedenti.
-
-Nel pannello **Importa** usa **Importa contenuto JSON**. Anche **Apri progetto** riconosce automaticamente questi formati.
+## Novità
+- area testo per incollare JSON;
+- validazione immediata e conteggio slide;
+- pulsante per leggere gli appunti quando il browser lo consente;
+- supporto a blocchi Markdown `json`;
+- scorciatoia Cmd/Ctrl + Invio per generare;
+- caricamento file JSON ancora disponibile.

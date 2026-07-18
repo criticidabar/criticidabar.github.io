@@ -1,4 +1,4 @@
 {
-  "version": "0.16.0",
-  "build": "content-json-import"
+  "version": "0.17.0",
+  "build": "content-json-paste"
 }

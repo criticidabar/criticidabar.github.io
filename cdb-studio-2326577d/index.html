@@ -12,12 +12,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CdB Studio">
   <title>CdB Studio</title>
-  <link rel="manifest" href="manifest.webmanifest?v=0.16.0">
+  <link rel="manifest" href="manifest.webmanifest?v=0.17.0">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Anybody:wdth,wght@50..150,100..900&family=Archivo:wdth,wght@62..125,100..900&family=Saira:wdth,wght@50..125,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=0.16.0">
+  <link rel="stylesheet" href="styles.css?v=0.17.0">
 </head>
 <body class="locked">
   <section id="authGate" class="auth-gate" aria-labelledby="authTitle">
@@ -38,7 +38,7 @@
 
   <div id="appShell" class="app-shell" hidden>
     <header class="topbar">
-      <div><strong>CdB Studio <small>v0.16</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
+      <div><strong>CdB Studio <small>v0.17</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
       <div class="top-actions">
         <button id="undoBtn" class="icon-btn" type="button" aria-label="Annulla" title="Annulla">↶</button>
         <button id="redoBtn" class="icon-btn" type="button" aria-label="Ripeti" title="Ripeti">↷</button>
@@ -246,9 +246,16 @@
           </section>
           <section class="import-card content-json-card">
             <h3>JSON contenuto</h3>
-            <label class="file-btn import-file">Importa contenuto JSON<input id="contentJsonInput" type="file" accept="application/json,.json"></label>
-            <p class="panel-note">Accetta sia un array con <code>slideType/mainText/subText</code>, sia il formato <code>content-json</code> con <code>title/subtitle</code>. Template, numerazione, etichette e query immagini vengono adattati automaticamente.</p>
-            <div id="contentJsonStatus" class="inline-status"></div>
+            <label class="field json-paste-field"><span>Incolla qui il JSON</span><textarea id="contentJsonTextarea" rows="12" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder='[{"slideType":"cover","mainText":"TITOLO…","subText":"Testo…","imageQuery":"…"}]'></textarea></label>
+            <div class="button-row json-paste-actions">
+              <button id="pasteContentJsonBtn" type="button">Incolla appunti</button>
+              <button id="importPastedJsonBtn" class="primary" type="button">Genera dal JSON</button>
+              <button id="clearContentJsonBtn" type="button">Svuota</button>
+            </div>
+            <div class="json-file-divider"><span>oppure</span></div>
+            <label class="file-btn import-file">Carica file JSON<input id="contentJsonInput" type="file" accept="application/json,.json"></label>
+            <p class="panel-note">Accetta sia un array con <code>slideType/mainText/subText</code>, sia il formato <code>content-json</code> con <code>title/subtitle</code>. Puoi incollare anche un blocco racchiuso tra <code>```json</code>. Template, numerazione, etichette e query immagini vengono adattati automaticamente.</p>
+            <div id="contentJsonStatus" class="inline-status" aria-live="polite"></div>
           </section>
           <section class="import-card">
             <h3>Testo da trasformare</h3>
@@ -335,7 +342,7 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="app.js?v=0.16.0"></script>
-  <script src="auth.js?v=0.16.0"></script>
+  <script src="app.js?v=0.17.0"></script>
+  <script src="auth.js?v=0.17.0"></script>
 </body>
 </html>
