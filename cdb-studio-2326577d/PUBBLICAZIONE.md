@@ -1,7 +1,9 @@
-Sostituisci nel repository la cartella `cdb-studio-2326577d` con questa versione.
+# Pubblicazione v0.15
 
-Apri poi:
+Sostituisci nel repository la cartella `cdb-studio-2326577d` con il contenuto del pacchetto.
 
-https://criticidabar.github.io/cdb-studio-2326577d/?v=12
+Apri:
 
-In alto deve comparire `v0.12`.
+`https://criticidabar.github.io/cdb-studio-2326577d/?v=15`
+
+Esegui un ricaricamento forzato. In alto deve comparire `v0.15`.

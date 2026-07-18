@@ -12,12 +12,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CdB Studio">
   <title>CdB Studio</title>
-  <link rel="manifest" href="manifest.webmanifest?v=0.12.0">
+  <link rel="manifest" href="manifest.webmanifest?v=0.15.0">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Anybody:wdth,wght@50..150,100..900&family=Archivo:wdth,wght@62..125,100..900&family=Saira:wdth,wght@50..125,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=0.12.0">
+  <link rel="stylesheet" href="styles.css?v=0.15.0">
 </head>
 <body class="locked">
   <section id="authGate" class="auth-gate" aria-labelledby="authTitle">
@@ -38,7 +38,7 @@
 
   <div id="appShell" class="app-shell" hidden>
     <header class="topbar">
-      <div><strong>CdB Studio <small>v0.12</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
+      <div><strong>CdB Studio <small>v0.15</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
       <div class="top-actions">
         <button id="undoBtn" class="icon-btn" type="button" aria-label="Annulla" title="Annulla">↶</button>
         <button id="redoBtn" class="icon-btn" type="button" aria-label="Ripeti" title="Ripeti">↷</button>
@@ -70,7 +70,7 @@
         <button data-select="title" type="button">Titolo</button>
         <button data-select="subtitle" type="button">Testo</button>
         <button data-select="logo" type="button">Logo</button>
-        <button id="addFreeTextQuickBtn" type="button">Testo +</button><button id="cycleSelectionBtn" type="button" title="Seleziona il livello successivo">Seleziona ↻</button>
+        <button id="addFreeTextQuickBtn" type="button">Testo +</button><label class="element-add-file">Foto +<input id="overlayInput" type="file" accept="image/*" multiple></label><button id="cycleSelectionBtn" type="button" title="Seleziona il livello successivo">Seleziona ↻</button>
       </section>
 
       <section class="bottom-panel">
@@ -87,6 +87,7 @@
         <div id="tab-content" class="tab-panel active">
           <label class="field"><span>Titolo</span><textarea id="titleInput" rows="3" placeholder="Scrivi il titolo"></textarea></label>
           <label class="field"><span>Testo secondario</span><textarea id="subtitleInput" rows="4" placeholder="Scrivi il testo"></textarea></label>
+          <label class="toggle-field compact-toggle"><input id="showNumbersInput" type="checkbox"><span>Mostra numerazione automatica delle slide</span></label>
           <details class="advanced-fields">
             <summary>Campi aggiuntivi del template</summary>
             <label class="field"><span>Kicker / etichetta</span><input id="kickerInput" type="text" placeholder="Es. OPINIONI SHOT"></label>
@@ -104,6 +105,9 @@
             <label class="primary file-btn">Carica dal telefono<input id="imageInput" type="file" accept="image/*" multiple></label>
             <button id="removeImageBtn" type="button">Rimuovi dalla slide</button>
           </div>
+          <label class="file-btn full-button">Aggiungi foto libera sovrapposta<input id="overlayInputSecondary" type="file" accept="image/*" multiple></label>
+          <div class="library-head"><h3>Foto libere nella slide</h3></div>
+          <div id="overlayList" class="free-text-list"><p class="panel-note">Nessuna foto libera nella slide.</p></div>
           <section id="cropPanel" class="crop-card">
             <div class="crop-head"><div><strong>Ritaglio immagine</strong><small id="cropTargetLabel">Seleziona un’immagine</small></div><button id="toggleCropBtn" class="primary" type="button">Ritaglia</button></div>
             <div class="button-row crop-presets"><button id="cropFillBtn" type="button">Riempi</button><button id="cropFitBtn" type="button">Adatta</button><button id="cropResetBtn" type="button">Reset</button><button id="cropDoneBtn" type="button">Fine</button></div>
@@ -245,11 +249,23 @@
             <label class="field"><span>Titolo progetto</span><input id="importTitleInput" type="text" placeholder="Titolo del carosello"></label>
             <label class="field"><span>Testo estratto o incollato</span><textarea id="importTextInput" rows="10" placeholder="Incolla qui un articolo, una caption o appunti…"></textarea></label>
             <div class="control-grid import-controls">
-              <label class="field"><span>Famiglia</span><select id="importFamilySelect"><option value="n">NUOVO CdB</option><option value="c">Classico CdB</option><option value="o">Originale</option><option value="d">Disclosure</option><option value="r">Ritorni in sala</option></select></label>
-              <label class="field"><span>Lunghezza</span><select id="importLengthSelect"><option value="short">Breve</option><option value="medium" selected>Media</option><option value="long">Lunga</option></select></label>
+              <label class="field"><span>Famiglia</span><select id="importFamilySelect"><option value="auto" selected>Automatico · scegli lo stile dal contenuto</option><option value="fg">FEDELE · Porco Rosso / Ghibli</option><option value="fk">FEDELE · Cavaliere dei Sette Regni</option><option value="fc">FEDELE · Dibattito cinema</option><option value="fm">FEDELE · Mad Max</option><option value="fd">FEDELE · Crema & ritagli</option><option value="fr">FEDELE · Ritorni in sala</option><option value="fs">FEDELE · Disclosure</option><option value="n">NUOVO CdB</option><option value="c">Classico CdB</option><option value="o">Originale</option><option value="d">Disclosure</option><option value="r">Ritorni in sala</option></select></label>
+              <label class="field"><span>Densità testo</span><select id="importLengthSelect"><option value="short">Molto sintetica</option><option value="medium" selected>Equilibrata</option><option value="long">Approfondita</option></select></label>
+            </div>
+            <div class="control-grid import-controls editorial-controls">
+              <label class="field"><span>Rielaborazione</span><select id="editorialModeSelect"><option value="synthetic" selected>Sintetico CdB</option><option value="faithful">Fedele alla fonte</option><option value="raw">Bozza grezza</option></select></label>
+              <label class="field"><span>Tono</span><select id="editorialToneSelect"><option value="informative">Informativo</option><option value="critical" selected>Critico / diretto</option><option value="ironic">Ironico leggero</option></select></label>
+              <label class="field"><span>Numero slide</span><select id="editorialSlideCountSelect"><option value="auto" selected>Automatico</option><option value="5">5 slide</option><option value="7">7 slide</option><option value="9">9 slide</option><option value="11">11 slide</option></select></label>
+              <label class="toggle-field editorial-quote-toggle"><input id="preserveQuotesCheckbox" type="checkbox" checked><span>Mantieni le citazioni testuali</span></label>
             </div>
             <div id="importStatus" class="inline-status"></div>
-            <label class="toggle-field"><input id="autoImageSuggestionsCheckbox" type="checkbox" checked><span>Cerca subito una foto proposta per ogni slide</span></label><button id="createFromTextBtn" class="primary full-button" type="button">Crea carosello dal testo</button>
+            <label class="toggle-field"><input id="autoImageSuggestionsCheckbox" type="checkbox" checked><span>Cerca subito una foto proposta per ogni slide</span></label>
+            <div class="button-row editorial-actions"><button id="prepareEditorialOutlineBtn" type="button">Prepara scaletta</button><button id="createFromTextBtn" class="primary" type="button">Crea carosello</button></div>
+            <section id="editorialOutlineCard" class="editorial-outline-card" hidden>
+              <div class="editorial-outline-head"><div><strong>Scaletta editoriale</strong><small id="editorialOutlineMetrics">—</small></div><button id="regenerateEditorialOutlineBtn" class="ghost" type="button">Rigenera</button></div>
+              <p class="panel-note">Titoli e testi sono modificabili prima di creare le slide. Puoi anche cambiare il template suggerito per ciascun punto.</p>
+              <div id="editorialOutlineList" class="editorial-outline-list"></div>
+            </section>
           </section>
         </div>
 
@@ -313,7 +329,7 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="app.js?v=0.12.0"></script>
-  <script src="auth.js?v=0.12.0"></script>
+  <script src="app.js?v=0.15.0"></script>
+  <script src="auth.js?v=0.15.0"></script>
 </body>
 </html>

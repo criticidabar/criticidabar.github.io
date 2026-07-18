@@ -1,14 +1,17 @@
-# CdB Studio v0.12
+# CdB Studio v0.15
 
-Questa versione introduce l’editor visuale dei template.
+## Rielaborazione editoriale da URL o testo
 
-## Novità
-- le decorazioni dei quattro template **NUOVO CdB** sono livelli separati;
-- rettangoli, cerchi, diagonali, fumetti ed etichette possono essere aggiunti senza modificare il codice;
-- ogni forma supporta posizione, scala, rotazione, opacità, visibilità, blocco e ordine dei livelli;
-- riempimenti collegabili alla palette CdB o impostabili con un colore libero;
-- dimensioni, bordo, arrotondamento e nome del livello modificabili;
-- salvataggio della struttura come template personale;
-- ripristino delle forme originali dei template NUOVO CdB.
+- modalità **Sintetico CdB**, **Fedele alla fonte** e **Bozza grezza**;
+- tono informativo, critico/diretto o ironico leggero;
+- scelta automatica o manuale di 5, 7, 9 o 11 slide;
+- densità del testo regolabile;
+- conservazione facoltativa delle citazioni;
+- selezione dei concetti principali e rimozione delle ripetizioni;
+- titoli riscritti per il formato carosello;
+- sequenza narrativa: contesto, punto chiave, dettaglio, impatto, lettura critica e CTA;
+- scaletta modificabile prima della creazione;
+- template suggerito per ogni slide e modificabile nella scaletta;
+- il flusso resta interamente gratuito e gira nel browser, senza API AI obbligatorie.
 
-I template storici mantengono per ora il blocco grafico originale, ma possono ricevere nuove forme sovrapposte e possono essere salvati come template personali.
+La rielaborazione è basata su regole editoriali locali: non inventa nuove informazioni, ma non sostituisce la revisione finale dell'autore.
