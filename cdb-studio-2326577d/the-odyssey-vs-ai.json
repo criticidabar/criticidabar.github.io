@@ -1,0 +1,57 @@
+[
+  {
+    "slideType": "cover",
+    "mainText": "NIENTE AI, NIENTE CGI. E FA 257 MILIONI IN UN WEEKEND.",
+    "subText": "The Odyssey di Nolan è il suo miglior debutto dal 2012 | Mentre Hollywood corre verso l'intelligenza artificiale",
+    "slideNumber": "1/7",
+    "hasImageBg": true,
+    "imageQuery": "The Odyssey Nolan movie poster"
+  },
+  {
+    "slideType": "content",
+    "mainText": "NUMERI DA CAPOGIRO",
+    "subText": "257,8 milioni di dollari globali nel weekend di debutto|Il miglior esordio di Nolan dai tempi di Dark Knight Rises, meglio di Oppenheimer",
+    "slideNumber": "2/7",
+    "postLabel": "THE ODYSSEY vs L'AI",
+    "imageQuery": "The Odyssey box office cinema crowd"
+  },
+  {
+    "slideType": "content",
+    "mainText": "UN CICLOPE VERO, ALTO 6 METRI",
+    "subText": "Niente green screen: per Polifemo Nolan ha costruito un animatronic gigante|Tom Holland: pensavo fosse CGI, invece era tutto reale davanti alla camera",
+    "slideNumber": "3/7",
+    "postLabel": "THE ODYSSEY vs L'AI",
+    "imageQuery": "Odyssey Cyclops practical effects animatronic"
+  },
+  {
+    "slideType": "content",
+    "mainText": "NOLAN NON HA PELI SULLA LINGUA",
+    "subText": "\"Si è investita tantissima energia per introdurre l'AI, ma i giovani la stanno rifiutando in blocco\"|E cita proprio Kane Parsons, il regista di punta di A24",
+    "slideNumber": "4/7",
+    "postLabel": "THE ODYSSEY vs L'AI",
+    "imageQuery": "Christopher Nolan interview portrait"
+  },
+  {
+    "slideType": "content",
+    "mainText": "LA SCISSIONE È SERVITA",
+    "subText": "Google investe 75 milioni in A24 per portare l'AI nel cinema|Ma il regista di punta di A24 vorrebbe cancellarla per sempre. E Nolan fa il pieno rifiutandola in toto",
+    "slideNumber": "5/7",
+    "postLabel": "THE ODYSSEY vs L'AI",
+    "imageQuery": "Hollywood film studio contrast"
+  },
+  {
+    "slideType": "content",
+    "mainText": "IL NOSTRO PARERE",
+    "subText": "Forse il pubblico non odia la tecnologia: odia sentirsi preso in giro|Un mostro vero fa più paura di uno renderizzato, e si vede al box office",
+    "slideNumber": "6/7",
+    "postLabel": "THE ODYSSEY vs L'AI",
+    "imageQuery": "cinema film set practical effects"
+  },
+  {
+    "slideType": "end",
+    "mainText": "IL FUTURO DEL CINEMA È INDIETRO?",
+    "subText": "I numeri di Nolan dicono che il pubblico vuole ancora l'artigianato|Le major lo ascolteranno o insisteranno con l'AI? Ditecelo nei commenti",
+    "slideNumber": "7/7",
+    "imageQuery": "cinema movie theater screen epic"
+  }
+]
