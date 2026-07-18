@@ -12,12 +12,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CdB Studio">
   <title>CdB Studio</title>
-  <link rel="manifest" href="manifest.webmanifest?v=0.4.0">
+  <link rel="manifest" href="manifest.webmanifest?v=0.6.0">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Archivo:wdth,wght@62..125,100..900&family=Saira:wdth,wght@50..125,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=0.4.0">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Anybody:wdth,wght@50..150,100..900&family=Archivo:wdth,wght@62..125,100..900&family=Saira:wdth,wght@50..125,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=0.6.0">
 </head>
 <body class="locked">
   <section id="authGate" class="auth-gate" aria-labelledby="authTitle">
@@ -38,7 +38,7 @@
 
   <div id="appShell" class="app-shell" hidden>
     <header class="topbar">
-      <div><strong>CdB Studio <small>v0.4</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
+      <div><strong>CdB Studio <small>v0.6</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
       <div class="top-actions">
         <button id="undoBtn" class="icon-btn" type="button" aria-label="Annulla" title="Annulla">↶</button>
         <button id="redoBtn" class="icon-btn" type="button" aria-label="Ripeti" title="Ripeti">↷</button>
@@ -57,7 +57,7 @@
         <div id="stage" class="stage">
           <svg id="canvas" viewBox="0 0 1080 1350" role="img" aria-label="Anteprima della slide"></svg>
         </div>
-        <div class="gesture-help"><span>Trascina: sposta</span><span>Pinch/maniglia: ridimensiona</span><span>Doppio tap: modifica testo</span></div>
+        <div class="gesture-help"><span>Trascina nel riquadro: sposta</span><span>Angoli/pinch: ridimensiona</span><span>Maniglia blu: larghezza testo</span></div>
       </section>
 
       <section class="filmstrip-wrap" aria-label="Slide del carosello">
@@ -114,17 +114,13 @@
             <label class="field"><span>Importa da URL diretto</span><input id="imageUrlInput" type="url" inputmode="url" placeholder="https://…/immagine.jpg"></label>
             <button id="importImageUrlBtn" type="button">Importa URL</button>
           </div>
-          <hr class="soft-separator">
-          <div class="personal-template-head"><h3>Foto libere</h3><label class="primary file-btn">Aggiungi foto libera<input id="overlayInput" type="file" accept="image/*" multiple></label></div>
-          <p class="panel-note">Le foto libere si possono spostare, ruotare e ridimensionare sopra il template.</p>
-          <div id="overlayList" class="free-text-list"><p class="panel-note">Nessuna foto libera nella slide.</p></div>
           <div class="library-head"><h3>Archivio immagini</h3><button id="clearLibraryBtn" class="ghost danger-text" type="button">Svuota</button></div>
           <div id="imageLibrary" class="image-grid"><p class="panel-note">Nessuna immagine salvata.</p></div>
         </div>
 
         <div id="tab-style" class="tab-panel">
           <div class="control-grid">
-            <label class="field"><span>Font</span><select id="fontSelect"><option value="Anybody">Anybody</option><option value="Archivo">Archivo</option><option value="Saira">Saira</option></select></label>
+            <label class="field"><span>Font</span><select id="fontSelect"><option value="Anton">Anton</option><option value="Anybody">Anybody</option><option value="Archivo">Archivo</option><option value="Saira">Saira</option></select></label>
             <label class="field"><span>Colore</span><input id="colorInput" type="color" value="#fff6ea"></label>
           </div>
           <label class="slider-field"><span>Dimensione <output id="sizeOut">92</output></span><input id="sizeRange" type="range" min="20" max="220" value="92"></label>
@@ -147,7 +143,6 @@
             <label class="field"><span>Variante</span><select id="variantSelect"></select></label>
           </div>
           <div id="variantCards" class="variant-cards"></div>
-          <label class="toggle-field"><input id="showNumbersInput" type="checkbox"><span>Mostra numero delle slide</span></label>
           <div class="button-row"><button id="duplicateSlideBtn" class="primary" type="button">Duplica slide</button><button id="deleteSlideBtn" class="danger" type="button">Elimina slide</button></div>
           <div class="button-row"><button id="moveLeftBtn" type="button">Sposta prima</button><button id="moveRightBtn" type="button">Sposta dopo</button></div>
           <hr class="soft-separator">
@@ -218,7 +213,7 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="app.js?v=0.4.0"></script>
-  <script src="auth.js?v=0.4.0"></script>
+  <script src="app.js?v=0.6.0"></script>
+  <script src="auth.js?v=0.6.0"></script>
 </body>
 </html>
