@@ -12,12 +12,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CdB Studio">
   <title>CdB Studio</title>
-  <link rel="manifest" href="manifest.webmanifest?v=0.3.0">
+  <link rel="manifest" href="manifest.webmanifest?v=0.4.0">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Archivo:wdth,wght@62..125,100..900&family=Saira:wdth,wght@50..125,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=0.3.0">
+  <link rel="stylesheet" href="styles.css?v=0.4.0">
 </head>
 <body class="locked">
   <section id="authGate" class="auth-gate" aria-labelledby="authTitle">
@@ -38,7 +38,7 @@
 
   <div id="appShell" class="app-shell" hidden>
     <header class="topbar">
-      <div><strong>CdB Studio <small>v0.3</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
+      <div><strong>CdB Studio <small>v0.4</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
       <div class="top-actions">
         <button id="undoBtn" class="icon-btn" type="button" aria-label="Annulla" title="Annulla">↶</button>
         <button id="redoBtn" class="icon-btn" type="button" aria-label="Ripeti" title="Ripeti">↷</button>
@@ -70,6 +70,7 @@
         <button data-select="title" type="button">Titolo</button>
         <button data-select="subtitle" type="button">Testo</button>
         <button data-select="logo" type="button">Logo</button>
+        <button id="addFreeTextQuickBtn" type="button">Testo +</button>
       </section>
 
       <section class="bottom-panel">
@@ -78,6 +79,7 @@
           <button data-tab="images" type="button">Immagini</button>
           <button data-tab="style" type="button">Stile</button>
           <button data-tab="template" type="button">Template</button>
+          <button data-tab="import" type="button">Importa</button>
           <button data-tab="export" type="button">Esporta</button>
         </nav>
 
@@ -91,11 +93,14 @@
             <label class="field"><span>Fumetto / CTA</span><input id="bubbleInput" type="text" placeholder="Es. VOI COSA NE PENSATE?"></label>
           </details>
           <div class="button-row"><button id="fitTextBtn" class="primary" type="button">Adatta testo</button><button id="editSelectedTextBtn" type="button">Modifica selezionato</button></div>
+          <hr class="soft-separator">
+          <div class="personal-template-head"><h3>Testi liberi</h3><button id="addFreeTextBtn" class="primary" type="button">Aggiungi testo</button></div>
+          <div id="freeTextList" class="free-text-list"><p class="panel-note">Nessun testo libero nella slide.</p></div>
         </div>
 
         <div id="tab-images" class="tab-panel">
           <div class="button-row">
-            <label class="primary file-btn">Carica dal telefono<input id="imageInput" type="file" accept="image/*"></label>
+            <label class="primary file-btn">Carica dal telefono<input id="imageInput" type="file" accept="image/*" multiple></label>
             <button id="removeImageBtn" type="button">Rimuovi dalla slide</button>
           </div>
           <div class="search-box">
@@ -109,6 +114,10 @@
             <label class="field"><span>Importa da URL diretto</span><input id="imageUrlInput" type="url" inputmode="url" placeholder="https://…/immagine.jpg"></label>
             <button id="importImageUrlBtn" type="button">Importa URL</button>
           </div>
+          <hr class="soft-separator">
+          <div class="personal-template-head"><h3>Foto libere</h3><label class="primary file-btn">Aggiungi foto libera<input id="overlayInput" type="file" accept="image/*" multiple></label></div>
+          <p class="panel-note">Le foto libere si possono spostare, ruotare e ridimensionare sopra il template.</p>
+          <div id="overlayList" class="free-text-list"><p class="panel-note">Nessuna foto libera nella slide.</p></div>
           <div class="library-head"><h3>Archivio immagini</h3><button id="clearLibraryBtn" class="ghost danger-text" type="button">Svuota</button></div>
           <div id="imageLibrary" class="image-grid"><p class="panel-note">Nessuna immagine salvata.</p></div>
         </div>
@@ -123,7 +132,11 @@
           <label class="slider-field"><span>Larghezza <output id="widthOut">90%</output></span><input id="widthRange" type="range" min="50" max="140" value="90"></label>
           <label class="slider-field"><span>Interlinea <output id="lineOut">0.92</output></span><input id="lineRange" type="range" min="65" max="150" value="92"></label>
           <label class="slider-field"><span>Scala elemento <output id="scaleOut">100%</output></span><input id="scaleRange" type="range" min="15" max="500" value="100"></label>
+          <label class="slider-field"><span>Rotazione <output id="rotationOut">0°</output></span><input id="rotationRange" type="range" min="-30" max="30" value="0"></label>
+          <label class="slider-field"><span>Larghezza area testo <output id="maxWidthOut">—</output></span><input id="maxWidthRange" type="range" min="180" max="1000" step="10" value="800"></label>
+          <label class="field"><span>Allineamento</span><select id="alignSelect"><option value="left">Sinistra</option><option value="center">Centro</option><option value="right">Destra</option></select></label>
           <div class="button-row"><button id="fitTextStyleBtn" class="primary" type="button">Adatta testo</button><button id="resetTransformBtn" type="button">Ripristina</button></div>
+          <button id="deleteSelectedElementBtn" class="danger full-button" type="button">Elimina testo libero selezionato</button>
           <div class="button-row two compact-actions"><button id="centerHBtn" type="button">Centra ↔</button><button id="centerVBtn" type="button">Centra ↕</button></div>
           <div class="button-row"><button id="applyStyleToTitlesBtn" type="button">Applica a tutti i titoli</button><button id="applyStyleToTextsBtn" type="button">Applica a tutti i testi</button></div>
         </div>
@@ -134,6 +147,7 @@
             <label class="field"><span>Variante</span><select id="variantSelect"></select></label>
           </div>
           <div id="variantCards" class="variant-cards"></div>
+          <label class="toggle-field"><input id="showNumbersInput" type="checkbox"><span>Mostra numero delle slide</span></label>
           <div class="button-row"><button id="duplicateSlideBtn" class="primary" type="button">Duplica slide</button><button id="deleteSlideBtn" class="danger" type="button">Elimina slide</button></div>
           <div class="button-row"><button id="moveLeftBtn" type="button">Sposta prima</button><button id="moveRightBtn" type="button">Sposta dopo</button></div>
           <hr class="soft-separator">
@@ -141,16 +155,45 @@
           <div id="personalTemplates" class="personal-templates"><p class="panel-note">Nessun template personale.</p></div>
         </div>
 
+        <div id="tab-import" class="tab-panel">
+          <section class="import-card">
+            <h3>Da articolo</h3>
+            <label class="field"><span>URL articolo</span><input id="articleUrlInput" type="url" inputmode="url" placeholder="https://…"></label>
+            <button id="extractArticleBtn" class="primary" type="button">Estrai testo e copertina</button>
+            <p class="panel-note">L’estrazione usa un lettore web esterno gratuito. Il testo resta modificabile prima di creare le slide.</p>
+          </section>
+          <section class="import-card">
+            <h3>Instagram / screenshot</h3>
+            <label class="field"><span>URL post pubblico</span><input id="instagramUrlInput" type="url" inputmode="url" placeholder="https://www.instagram.com/p/…"></label>
+            <button id="extractInstagramBtn" type="button">Prova a leggere il post</button>
+            <label class="file-btn import-file">Carica screenshot e avvia OCR<input id="ocrImagesInput" type="file" accept="image/*" multiple></label>
+            <p class="panel-note">Instagram può bloccare l’estrazione diretta. Gli screenshot con OCR sono il metodo più affidabile senza server.</p>
+          </section>
+          <section class="import-card">
+            <h3>Testo da trasformare</h3>
+            <label class="field"><span>Titolo progetto</span><input id="importTitleInput" type="text" placeholder="Titolo del carosello"></label>
+            <label class="field"><span>Testo estratto o incollato</span><textarea id="importTextInput" rows="10" placeholder="Incolla qui un articolo, una caption o appunti…"></textarea></label>
+            <div class="control-grid import-controls">
+              <label class="field"><span>Famiglia</span><select id="importFamilySelect"><option value="c">Classico CdB</option><option value="o">Originale</option><option value="d">Disclosure</option><option value="r">Ritorni in sala</option></select></label>
+              <label class="field"><span>Lunghezza</span><select id="importLengthSelect"><option value="short">Breve</option><option value="medium" selected>Media</option><option value="long">Lunga</option></select></label>
+            </div>
+            <div id="importStatus" class="inline-status"></div>
+            <button id="createFromTextBtn" class="primary full-button" type="button">Crea carosello dal testo</button>
+          </section>
+        </div>
+
         <div id="tab-export" class="tab-panel">
           <div class="export-grid">
             <button id="exportPngBtn" class="primary" type="button">PNG slide</button>
             <button id="sharePngBtn" type="button">Condividi PNG</button>
             <button id="exportSvgBtn" type="button">SVG modificabile</button>
+            <button id="exportFaithfulSvgBtn" type="button">SVG fedele</button>
+            <button id="exportPdfBtn" type="button">PDF multipagina</button>
             <button id="exportAllBtn" class="primary" type="button">ZIP carosello</button>
             <button id="exportProjectBtn" type="button">Salva progetto</button>
             <label class="file-btn">Apri progetto<input id="projectInput" type="file" accept="application/json,.json,.cdb.json"></label>
           </div>
-          <p class="panel-note">Il PNG è il formato pronto da pubblicare. L’SVG conserva testi e livelli; il programma che lo apre deve avere il font disponibile.</p>
+          <p class="panel-note">Il PNG è il formato pronto da pubblicare. L’SVG modificabile conserva i testi. L’SVG fedele e il PDF fissano la resa grafica e non dipendono dai font installati.</p>
         </div>
       </section>
     </main>
@@ -174,7 +217,8 @@
   </dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=0.3.0"></script>
-  <script src="auth.js?v=0.3.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="app.js?v=0.4.0"></script>
+  <script src="auth.js?v=0.4.0"></script>
 </body>
 </html>

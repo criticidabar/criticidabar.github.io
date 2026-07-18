@@ -46,3 +46,22 @@ Provare sia su Safari iPhone sia su Chrome/Safari Mac:
 4. spostare e ridimensionare titolo, immagine e logo;
 5. esportare PNG e ZIP;
 6. chiudere e riaprire la pagina per verificare l'autosalvataggio.
+
+
+## v0.4
+- Mantiene le 17 varianti e i template personali della v0.3.
+- Aggiunge testi liberi completi, rotazione e larghezza area testo.
+- Aggiunge importazione articolo tramite Reader API, tentativo Instagram e OCR screenshot.
+- Aggiunge PDF multipagina e SVG fedele indipendente dai font.
+- L’import Instagram diretto non è garantito: la piattaforma può bloccare l’estrazione da una web app statica.
+
+
+## Novità v0.4
+- Mantiene le 4 famiglie e le 17 varianti della v0.3.
+- Import da articolo, tentativo Instagram, OCR da screenshot e generazione automatica carosello.
+- Testi liberi e foto libere sovrapponibili.
+- Numerazione slide facoltativa.
+- Export PNG, ZIP, SVG modificabile, SVG fedele e PDF.
+- I template personali includono anche testi e foto libere.
+
+Nota: l’import diretto da Instagram può essere bloccato dalla piattaforma; in quel caso usare screenshot + OCR.
