@@ -1,1 +1,6 @@
-{"version": "0.6.0", "build": "2026-07-18", "path": "cdb-studio-2326577d"}
+{
+  "version": "0.12.0",
+  "build": "2026-07-18",
+  "path": "cdb-studio-2326577d",
+  "engine": "visual-template-shapes-editor"
+}

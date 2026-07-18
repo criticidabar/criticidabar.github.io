@@ -12,12 +12,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CdB Studio">
   <title>CdB Studio</title>
-  <link rel="manifest" href="manifest.webmanifest?v=0.6.0">
+  <link rel="manifest" href="manifest.webmanifest?v=0.12.0">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Anybody:wdth,wght@50..150,100..900&family=Archivo:wdth,wght@62..125,100..900&family=Saira:wdth,wght@50..125,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=0.6.0">
+  <link rel="stylesheet" href="styles.css?v=0.12.0">
 </head>
 <body class="locked">
   <section id="authGate" class="auth-gate" aria-labelledby="authTitle">
@@ -38,7 +38,7 @@
 
   <div id="appShell" class="app-shell" hidden>
     <header class="topbar">
-      <div><strong>CdB Studio <small>v0.6</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
+      <div><strong>CdB Studio <small>v0.12</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
       <div class="top-actions">
         <button id="undoBtn" class="icon-btn" type="button" aria-label="Annulla" title="Annulla">↶</button>
         <button id="redoBtn" class="icon-btn" type="button" aria-label="Ripeti" title="Ripeti">↷</button>
@@ -70,7 +70,7 @@
         <button data-select="title" type="button">Titolo</button>
         <button data-select="subtitle" type="button">Testo</button>
         <button data-select="logo" type="button">Logo</button>
-        <button id="addFreeTextQuickBtn" type="button">Testo +</button>
+        <button id="addFreeTextQuickBtn" type="button">Testo +</button><button id="cycleSelectionBtn" type="button" title="Seleziona il livello successivo">Seleziona ↻</button>
       </section>
 
       <section class="bottom-panel">
@@ -78,6 +78,7 @@
           <button class="active" data-tab="content" type="button">Testi</button>
           <button data-tab="images" type="button">Immagini</button>
           <button data-tab="style" type="button">Stile</button>
+          <button data-tab="layers" type="button">Livelli</button>
           <button data-tab="template" type="button">Template</button>
           <button data-tab="import" type="button">Importa</button>
           <button data-tab="export" type="button">Esporta</button>
@@ -103,10 +104,28 @@
             <label class="primary file-btn">Carica dal telefono<input id="imageInput" type="file" accept="image/*" multiple></label>
             <button id="removeImageBtn" type="button">Rimuovi dalla slide</button>
           </div>
+          <section id="cropPanel" class="crop-card">
+            <div class="crop-head"><div><strong>Ritaglio immagine</strong><small id="cropTargetLabel">Seleziona un’immagine</small></div><button id="toggleCropBtn" class="primary" type="button">Ritaglia</button></div>
+            <div class="button-row crop-presets"><button id="cropFillBtn" type="button">Riempi</button><button id="cropFitBtn" type="button">Adatta</button><button id="cropResetBtn" type="button">Reset</button><button id="cropDoneBtn" type="button">Fine</button></div>
+            <label class="slider-field"><span>Zoom interno <output id="cropZoomOut">100%</output></span><input id="cropZoomRange" type="range" min="100" max="500" step="1" value="100"></label>
+            <div class="control-grid crop-position-grid">
+              <label class="slider-field"><span>Orizzontale <output id="cropXOut">0</output></span><input id="cropXRange" type="range" min="-100" max="100" step="1" value="0"></label>
+              <label class="slider-field"><span>Verticale <output id="cropYOut">0</output></span><input id="cropYRange" type="range" min="-100" max="100" step="1" value="0"></label>
+            </div>
+            <p class="panel-note">In modalità ritaglio trascina la foto dentro la cornice. Su telefono usa il pinch per lo zoom; su Mac usa lo slider o la rotella.</p>
+          </section>
           <div class="search-box">
-            <label class="field"><span>Ricerca immagini</span><input id="imageSearchInput" type="search" placeholder="Film, attore, regista…" enterkeyhint="search"></label>
-            <div class="button-row"><button id="searchImagesBtn" class="primary" type="button">Cerca</button><button id="openGoogleImagesBtn" type="button">Google Immagini ↗</button></div>
-            <p class="panel-note">La ricerca interna usa Wikimedia Commons, senza chiavi API. Per immagini promozionali o locandine può essere più limitata.</p>
+            <div class="library-head"><h3>Immagine pensata per la slide</h3><button id="regenerateImageQueryBtn" class="ghost" type="button">Rigenera query</button></div>
+            <label class="field"><span>Query specifica</span><input id="imageSearchInput" type="search" placeholder="Titolo + concetto della slide…" enterkeyhint="search"></label>
+            <div class="control-grid search-source-grid">
+              <label class="field"><span>Sorgente</span><select id="imageSearchSource"><option value="auto">Auto: TMDb + Commons</option><option value="tmdb">TMDb cinema/serie</option><option value="commons">Wikimedia Commons</option></select></label>
+              <label class="field"><span>Tipo TMDb</span><select id="tmdbImageType"><option value="backdrop">Scene / fondali</option><option value="poster">Poster</option><option value="logo">Logo titolo</option><option value="profile">Cast / persone</option></select></label>
+            </div>
+            <details class="advanced-fields tmdb-settings"><summary>Configura TMDb</summary><label class="field"><span>API Read Access Token o API key</span><input id="tmdbApiKeyInput" type="password" autocomplete="off" placeholder="Resta solo su questo dispositivo"></label><div class="button-row"><button id="saveTmdbKeyBtn" type="button">Salva chiave</button><button id="clearTmdbKeyBtn" type="button">Rimuovi</button></div><p class="panel-note">La chiave resta nel browser e non viene salvata nel progetto o nel repository.</p><div class="tmdb-credit"><a href="https://www.themoviedb.org" target="_blank" rel="noopener"><img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="TMDB"></a><p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p></div></details>
+            <div class="button-row"><button id="suggestCurrentImageBtn" class="primary" type="button">Proponi immagine</button><button id="searchImagesBtn" type="button">Mostra alternative</button></div>
+            <div class="button-row"><button id="suggestAllImagesBtn" type="button">Proponi per tutte le slide</button><button id="openGoogleImagesBtn" type="button">Google Immagini ↗</button></div>
+            <label class="toggle-field compact-toggle"><input id="replaceSuggestedImagesCheckbox" type="checkbox"><span>Sostituisci anche le immagini già presenti</span></label>
+            <p class="panel-note">La query combina il tema generale con il contenuto della singola slide. Con TMDb configurato l’app privilegia poster, fondali, loghi e cast di film e serie; Wikimedia Commons resta il ripiego gratuito.</p>
             <div id="imageSearchStatus" class="inline-status"></div>
             <div id="imageSearchResults" class="image-grid"></div>
           </div>
@@ -121,20 +140,56 @@
         <div id="tab-style" class="tab-panel">
           <div class="control-grid">
             <label class="field"><span>Font</span><select id="fontSelect"><option value="Anton">Anton</option><option value="Anybody">Anybody</option><option value="Archivo">Archivo</option><option value="Saira">Saira</option></select></label>
-            <label class="field"><span>Colore</span><input id="colorInput" type="color" value="#fff6ea"></label>
+            <label class="field"><span>Colore personalizzato</span><input id="colorInput" type="color" value="#fff6ea"></label>
           </div>
+          <section class="palette-card">
+            <div><strong>Testo selezionato</strong><small>Colori rapidi CdB</small></div>
+            <div id="textPaletteSwatches" class="color-swatches"></div>
+          </section>
+          <section class="palette-card template-colors">
+            <div class="palette-card-head"><div><strong>Colori del template</strong><small>Particolarmente utile sui template NUOVO CdB</small></div><button id="resetPaletteBtn" class="ghost" type="button">Ripristina</button></div>
+            <div class="control-grid">
+              <label class="field"><span>Elemento grafico</span><select id="paletteTargetSelect"><option value="background">Sfondo</option><option value="accent" selected>Accento</option><option value="secondary">Secondario</option><option value="surface">Superficie chiara</option><option value="ink">Testo/contrasto scuro</option></select></label>
+              <label class="field"><span>Colore personalizzato</span><input id="paletteCustomInput" type="color" value="#ff6f00"></label>
+            </div>
+            <div id="templatePaletteSwatches" class="color-swatches"></div>
+          </section>
           <label class="slider-field"><span>Dimensione <output id="sizeOut">92</output></span><input id="sizeRange" type="range" min="20" max="220" value="92"></label>
           <label class="slider-field"><span>Peso <output id="weightOut">850</output></span><input id="weightRange" type="range" min="300" max="900" step="10" value="850"></label>
           <label class="slider-field"><span>Larghezza <output id="widthOut">90%</output></span><input id="widthRange" type="range" min="50" max="140" value="90"></label>
           <label class="slider-field"><span>Interlinea <output id="lineOut">0.92</output></span><input id="lineRange" type="range" min="65" max="150" value="92"></label>
           <label class="slider-field"><span>Scala elemento <output id="scaleOut">100%</output></span><input id="scaleRange" type="range" min="15" max="500" value="100"></label>
           <label class="slider-field"><span>Rotazione <output id="rotationOut">0°</output></span><input id="rotationRange" type="range" min="-30" max="30" value="0"></label>
+          <label class="slider-field"><span>Opacità livello <output id="opacityOut">100%</output></span><input id="opacityRange" type="range" min="0" max="100" value="100"></label>
+          <div class="control-grid precision-grid">
+            <label class="field"><span>Posizione X</span><input id="positionXInput" type="number" min="-2000" max="3000" step="1" value="540"></label>
+            <label class="field"><span>Posizione Y</span><input id="positionYInput" type="number" min="-2000" max="3000" step="1" value="675"></label>
+          </div>
           <label class="slider-field"><span>Larghezza area testo <output id="maxWidthOut">—</output></span><input id="maxWidthRange" type="range" min="180" max="1000" step="10" value="800"></label>
           <label class="field"><span>Allineamento</span><select id="alignSelect"><option value="left">Sinistra</option><option value="center">Centro</option><option value="right">Destra</option></select></label>
           <div class="button-row"><button id="fitTextStyleBtn" class="primary" type="button">Adatta testo</button><button id="resetTransformBtn" type="button">Ripristina</button></div>
           <button id="deleteSelectedElementBtn" class="danger full-button" type="button">Elimina testo libero selezionato</button>
           <div class="button-row two compact-actions"><button id="centerHBtn" type="button">Centra ↔</button><button id="centerVBtn" type="button">Centra ↕</button></div>
           <div class="button-row"><button id="applyStyleToTitlesBtn" type="button">Applica a tutti i titoli</button><button id="applyStyleToTextsBtn" type="button">Applica a tutti i testi</button></div>
+          <section class="global-style-card">
+            <div><strong>Stili globali</strong><small>Uniforma il carosello con un tocco</small></div>
+            <div class="global-actions-grid"><button id="applyStyleSameRoleBtn" type="button">Stesso ruolo</button><button id="applyLogoAllBtn" type="button">Logo su tutte</button><button id="applyPaletteAllBtn" type="button">Palette su tutte</button><button id="applyImageCropAllBtn" type="button">Ritaglio su immagini</button></div>
+          </section>
+          <label class="toggle-field"><input id="snapGuidesInput" type="checkbox" checked><span>Guide magnetiche e margini sicuri</span></label>
+        </div>
+
+
+        <div id="tab-layers" class="tab-panel">
+          <div class="layers-head"><div><h3>Livelli della slide</h3><p id="layerSelectionState" class="panel-note">Visibile e modificabile</p></div><button id="duplicateElementBtn" class="primary" type="button">Duplica</button></div>
+          <p class="panel-note layer-help">Gli elementi più in alto nella lista appaiono davanti. Su Mac puoi trascinare le righe; da telefono usa i pulsanti.</p>
+          <div id="layerList" class="layer-list"></div>
+          <div class="layer-actions-grid">
+            <button id="layerFrontBtn" type="button">Porta davanti</button>
+            <button id="layerForwardBtn" type="button">Avanti di 1</button>
+            <button id="layerBackwardBtn" type="button">Indietro di 1</button>
+            <button id="layerBackBtn" type="button">Porta dietro</button>
+          </div>
+          <p class="panel-note">Ogni livello usa lo stesso motore: visibilità, blocco, opacità e ordine. L’immagine principale può essere portata sopra o sotto testi e logo; i gruppi grafici del template restano bloccati.</p>
         </div>
 
         <div id="tab-template" class="tab-panel">
@@ -143,6 +198,27 @@
             <label class="field"><span>Variante</span><select id="variantSelect"></select></label>
           </div>
           <div id="variantCards" class="variant-cards"></div>
+          <section id="templateShapeEditor" class="template-shape-editor">
+            <div class="template-editor-head"><div><strong>Editor visuale del template</strong><small id="templateShapeNotice">Modifica forme e decorazioni senza scrivere codice.</small></div><label class="switch-inline"><input id="templateEditModeInput" type="checkbox"><span>Modifica forme</span></label></div>
+            <div class="shape-toolbar" aria-label="Aggiungi forma">
+              <button type="button" data-add-shape="rect">▭ Rettangolo</button><button type="button" data-add-shape="ellipse">● Cerchio</button><button type="button" data-add-shape="polygon">◩ Diagonale</button><button type="button" data-add-shape="bubble">▱ Fumetto</button><button type="button" data-add-shape="label">T Etichetta</button>
+            </div>
+            <div class="shape-selection-card">
+              <div class="shape-selection-title"><strong id="shapeSelectionName">Nessuna forma selezionata</strong><small>Selezionala dalla slide o dal pannello Livelli</small></div>
+              <div class="control-grid">
+                <label class="field"><span>Nome livello</span><input id="shapeNameInput" type="text"></label>
+                <label class="field"><span>Riempimento</span><select id="shapeFillSelect"><option value="palette:accent">Arancione / accento</option><option value="palette:background">Blu / sfondo</option><option value="palette:secondary">Secondario</option><option value="palette:surface">Crema / superficie</option><option value="palette:ink">Nero / contrasto</option><option value="custom">Colore libero</option></select></label>
+                <label class="field"><span>Colore libero</span><input id="shapeCustomColor" type="color" value="#ff6f00"></label>
+                <label class="field"><span>Bordo</span><input id="shapeStrokeColor" type="color" value="#005c78"></label>
+                <label class="field"><span>Spessore bordo</span><input id="shapeStrokeWidthInput" type="number" min="0" max="80" step="1"></label>
+                <label id="shapeRadiusField" class="field"><span>Arrotondamento</span><input id="shapeRadiusInput" type="number" min="0" max="300" step="1"></label>
+                <label class="field"><span>Larghezza</span><input id="shapeWidthInput" type="number" min="12" max="1800" step="1"></label>
+                <label class="field"><span>Altezza</span><input id="shapeHeightInput" type="number" min="12" max="1800" step="1"></label>
+              </div>
+              <label id="shapeTextField" class="field" hidden><span>Testo etichetta</span><input id="shapeTextInput" type="text"></label>
+              <div class="button-row"><button id="resetTemplateShapesBtn" type="button">Ripristina forme originali</button><button id="saveStructuralTemplateBtn" class="primary" type="button">Salva come nuovo template</button></div>
+            </div>
+          </section>
           <div class="button-row"><button id="duplicateSlideBtn" class="primary" type="button">Duplica slide</button><button id="deleteSlideBtn" class="danger" type="button">Elimina slide</button></div>
           <div class="button-row"><button id="moveLeftBtn" type="button">Sposta prima</button><button id="moveRightBtn" type="button">Sposta dopo</button></div>
           <hr class="soft-separator">
@@ -169,15 +245,25 @@
             <label class="field"><span>Titolo progetto</span><input id="importTitleInput" type="text" placeholder="Titolo del carosello"></label>
             <label class="field"><span>Testo estratto o incollato</span><textarea id="importTextInput" rows="10" placeholder="Incolla qui un articolo, una caption o appunti…"></textarea></label>
             <div class="control-grid import-controls">
-              <label class="field"><span>Famiglia</span><select id="importFamilySelect"><option value="c">Classico CdB</option><option value="o">Originale</option><option value="d">Disclosure</option><option value="r">Ritorni in sala</option></select></label>
+              <label class="field"><span>Famiglia</span><select id="importFamilySelect"><option value="n">NUOVO CdB</option><option value="c">Classico CdB</option><option value="o">Originale</option><option value="d">Disclosure</option><option value="r">Ritorni in sala</option></select></label>
               <label class="field"><span>Lunghezza</span><select id="importLengthSelect"><option value="short">Breve</option><option value="medium" selected>Media</option><option value="long">Lunga</option></select></label>
             </div>
             <div id="importStatus" class="inline-status"></div>
-            <button id="createFromTextBtn" class="primary full-button" type="button">Crea carosello dal testo</button>
+            <label class="toggle-field"><input id="autoImageSuggestionsCheckbox" type="checkbox" checked><span>Cerca subito una foto proposta per ogni slide</span></label><button id="createFromTextBtn" class="primary full-button" type="button">Crea carosello dal testo</button>
           </section>
         </div>
 
         <div id="tab-export" class="tab-panel">
+          <section class="quality-card" aria-labelledby="qualityTitle">
+            <div class="quality-head">
+              <div><strong id="qualityTitle">Controllo qualità</strong><small id="qualityCheckedAt">Non ancora eseguito</small></div>
+              <span id="qualityStatusBadge" class="quality-status neutral">Da controllare</span>
+            </div>
+            <div id="qualityMetrics" class="quality-metrics"><span>— errori</span><span>— avvisi</span><span>— note</span></div>
+            <div class="button-row"><button id="runQualityBtn" class="primary" type="button">Controlla carosello</button><button id="fixFirstQualityBtn" type="button" disabled>Vai al primo problema</button></div>
+            <label class="toggle-field compact-toggle"><input id="autoQualityInput" type="checkbox" checked><span>Controlla automaticamente prima dell’esportazione</span></label>
+            <div id="qualityList" class="quality-list"><p class="panel-note">Il controllo verifica testi, margini, risoluzione delle immagini, logo, livelli nascosti e coerenza del progetto.</p></div>
+          </section>
           <div class="export-grid">
             <button id="exportPngBtn" class="primary" type="button">PNG slide</button>
             <button id="sharePngBtn" type="button">Condividi PNG</button>
@@ -186,9 +272,10 @@
             <button id="exportPdfBtn" type="button">PDF multipagina</button>
             <button id="exportAllBtn" class="primary" type="button">ZIP carosello</button>
             <button id="exportProjectBtn" type="button">Salva progetto</button>
+            <button id="exportCompleteBtn" class="primary" type="button">Pacchetto completo</button>
             <label class="file-btn">Apri progetto<input id="projectInput" type="file" accept="application/json,.json,.cdb.json"></label>
           </div>
-          <p class="panel-note">Il PNG è il formato pronto da pubblicare. L’SVG modificabile conserva i testi. L’SVG fedele e il PDF fissano la resa grafica e non dipendono dai font installati.</p>
+          <p class="panel-note">Il PNG è il formato pronto da pubblicare. Il pacchetto completo contiene PNG, SVG modificabili, progetto e rapporto qualità. L’SVG fedele e il PDF fissano la resa grafica.</p>
         </div>
       </section>
     </main>
@@ -211,9 +298,22 @@
     </form>
   </dialog>
 
+  <dialog id="qualityDialog" class="quality-dialog">
+    <form method="dialog">
+      <h2>Controllo prima dell’export</h2>
+      <p id="qualityDialogCopy" class="auth-copy">Sono stati trovati alcuni punti da verificare.</p>
+      <div id="qualityDialogMetrics" class="quality-metrics"></div>
+      <div class="dialog-actions-stacked">
+        <button id="qualityFixDialogBtn" class="primary" type="button">Correggi il primo problema</button>
+        <button id="qualityContinueBtn" type="button">Esporta comunque</button>
+        <button value="cancel">Annulla</button>
+      </div>
+    </form>
+  </dialog>
+
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="app.js?v=0.6.0"></script>
-  <script src="auth.js?v=0.6.0"></script>
+  <script src="app.js?v=0.12.0"></script>
+  <script src="auth.js?v=0.12.0"></script>
 </body>
 </html>
