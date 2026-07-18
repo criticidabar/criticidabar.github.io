@@ -1,17 +1,10 @@
-# CdB Studio v0.15
+# CdB Studio v0.16
 
-## Rielaborazione editoriale da URL o testo
+Aggiunge l’importazione diretta di JSON editoriali.
 
-- modalità **Sintetico CdB**, **Fedele alla fonte** e **Bozza grezza**;
-- tono informativo, critico/diretto o ironico leggero;
-- scelta automatica o manuale di 5, 7, 9 o 11 slide;
-- densità del testo regolabile;
-- conservazione facoltativa delle citazioni;
-- selezione dei concetti principali e rimozione delle ripetizioni;
-- titoli riscritti per il formato carosello;
-- sequenza narrativa: contesto, punto chiave, dettaglio, impatto, lettura critica e CTA;
-- scaletta modificabile prima della creazione;
-- template suggerito per ogni slide e modificabile nella scaletta;
-- il flusso resta interamente gratuito e gira nel browser, senza API AI obbligatorie.
+Formati supportati:
+- array con `slideType`, `mainText`, `subText`, `slideNumber`, `postLabel`, `imageQuery`;
+- oggetto `content-json` con `slides`, `title.text`, `subtitle.text`, `familyHint` e `templateHint`;
+- progetti `.cdb.json` delle versioni precedenti.
 
-La rielaborazione è basata su regole editoriali locali: non inventa nuove informazioni, ma non sostituisce la revisione finale dell'autore.
+Nel pannello **Importa** usa **Importa contenuto JSON**. Anche **Apri progetto** riconosce automaticamente questi formati.

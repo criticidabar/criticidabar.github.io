@@ -12,12 +12,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CdB Studio">
   <title>CdB Studio</title>
-  <link rel="manifest" href="manifest.webmanifest?v=0.15.0">
+  <link rel="manifest" href="manifest.webmanifest?v=0.16.0">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Anybody:wdth,wght@50..150,100..900&family=Archivo:wdth,wght@62..125,100..900&family=Saira:wdth,wght@50..125,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=0.15.0">
+  <link rel="stylesheet" href="styles.css?v=0.16.0">
 </head>
 <body class="locked">
   <section id="authGate" class="auth-gate" aria-labelledby="authTitle">
@@ -38,7 +38,7 @@
 
   <div id="appShell" class="app-shell" hidden>
     <header class="topbar">
-      <div><strong>CdB Studio <small>v0.15</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
+      <div><strong>CdB Studio <small>v0.16</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
       <div class="top-actions">
         <button id="undoBtn" class="icon-btn" type="button" aria-label="Annulla" title="Annulla">↶</button>
         <button id="redoBtn" class="icon-btn" type="button" aria-label="Ripeti" title="Ripeti">↷</button>
@@ -244,6 +244,12 @@
             <label class="file-btn import-file">Carica screenshot e avvia OCR<input id="ocrImagesInput" type="file" accept="image/*" multiple></label>
             <p class="panel-note">Instagram può bloccare l’estrazione diretta. Gli screenshot con OCR sono il metodo più affidabile senza server.</p>
           </section>
+          <section class="import-card content-json-card">
+            <h3>JSON contenuto</h3>
+            <label class="file-btn import-file">Importa contenuto JSON<input id="contentJsonInput" type="file" accept="application/json,.json"></label>
+            <p class="panel-note">Accetta sia un array con <code>slideType/mainText/subText</code>, sia il formato <code>content-json</code> con <code>title/subtitle</code>. Template, numerazione, etichette e query immagini vengono adattati automaticamente.</p>
+            <div id="contentJsonStatus" class="inline-status"></div>
+          </section>
           <section class="import-card">
             <h3>Testo da trasformare</h3>
             <label class="field"><span>Titolo progetto</span><input id="importTitleInput" type="text" placeholder="Titolo del carosello"></label>
@@ -329,7 +335,7 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="app.js?v=0.15.0"></script>
-  <script src="auth.js?v=0.15.0"></script>
+  <script src="app.js?v=0.16.0"></script>
+  <script src="auth.js?v=0.16.0"></script>
 </body>
 </html>
