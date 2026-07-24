@@ -1,0 +1,27 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const read=file=>fs.readFileSync(path.join(root,file),'utf8');
+const expected='0.34.0';
+const required=['index.html','styles.css','app.js','auth.js','sw.js','version.json','js/config.js','js/runtime.js','js/state.js','js/engine.js','js/render.js','js/images.js','js/editorial.js','js/export.js'];
+for(const file of required)if(!fs.existsSync(path.join(root,file)))throw new Error(`File mancante: ${file}`);
+const nickelFont='assets/fonts/NickelGothicV3-Regular.otf',nickelFontPath=path.join(root,nickelFont);
+if(!fs.existsSync(nickelFontPath)||fs.statSync(nickelFontPath).size<10000)throw new Error('Font Nickel Gothic mancante o non valido');
+const vectorLogo='assets/logo.svg';
+if(!fs.existsSync(path.join(root,vectorLogo))||!read(vectorLogo).includes('Nickel Gothic v3'))throw new Error('Logo vettoriale mancante o non valido');
+for(const file of ['index.html','app.js','sw.js','version.json','js/config.js'])if(!read(file).includes(expected))throw new Error(`Versione ${expected} assente da ${file}`);
+const html=read('index.html'),ids=[...html.matchAll(/\sid="([^"]+)"/g)].map(match=>match[1]),duplicates=ids.filter((id,index)=>ids.indexOf(id)!==index);
+if(duplicates.length)throw new Error(`ID duplicati: ${[...new Set(duplicates)].join(', ')}`);
+const cached=['js/runtime.js','js/state.js','js/engine.js','js/render.js','js/images.js','js/editorial.js','js/export.js','app.js','auth.js'];
+for(const file of cached)if(!read('sw.js').includes(file))throw new Error(`File non incluso nella cache PWA: ${file}`);
+if(!read('sw.js').includes(nickelFont))throw new Error('Nickel Gothic non incluso nella cache PWA');
+if(!read('sw.js').includes(vectorLogo))throw new Error('Logo vettoriale non incluso nella cache PWA');
+if(!read('styles.css').includes("font-family:'Nickel Gothic v3'"))throw new Error('Dichiarazione @font-face Nickel Gothic assente');
+if(!read('js/render.js').includes('function buildAffinitySvg')||!read('js/render.js').includes('function affinityTextSvg'))throw new Error('Export Affinity non disponibile');
+if(!read('js/export.js').includes('data:font/otf;base64')&&!read('js/export.js').includes('loadAffinityFontDataUrl'))throw new Error('Incorporamento font SVG non disponibile');
+if(!read('js/export.js').includes('loadAffinityLogoMarkup'))throw new Error('Incorporamento logo vettoriale non disponibile');
+if(!read('js/export.js').includes('function logoTextOverlap')||!read('js/export.js').includes('Logo sopra il testo'))throw new Error('Controllo sovrapposizione logo/testo assente');
+for(const fixture of ['tests/fixtures/content-v031-the-odyssey.json','tests/fixtures/legacy-client-v030.cdb.json'])JSON.parse(read(fixture));
+console.log(`OK: ${ids.length} ID univoci, ${required.length} file, versione ${expected}, fixture JSON valide.`);

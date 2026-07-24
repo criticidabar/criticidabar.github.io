@@ -1,4 +1,5 @@
 {
-  "version": "0.22.0",
-  "build": "automation-optimizer-assisted-review"
+  "version": "0.34.0",
+  "name": "CdB Studio",
+  "channel": "mobile-web"
 }

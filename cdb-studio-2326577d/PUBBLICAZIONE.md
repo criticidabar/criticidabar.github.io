@@ -1,9 +1,12 @@
-# Pubblicazione v0.22
+# Pubblicazione v0.34
 
-Sostituire i file della cartella privata GitHub Pages con quelli di questa cartella.
-
-Aprire:
-
-`https://criticidabar.github.io/cdb-studio-2326577d/?v=22`
-
-Verificare che nella barra superiore compaia **v0.22**.
+1. Estrarre lo ZIP.
+2. Sostituire nel repository la cartella `cdb-studio-2326577d`.
+3. Attendere il completamento di GitHub Pages.
+4. Aprire `https://criticidabar.github.io/cdb-studio-2326577d/?v=34`.
+5. Verificare che in alto compaia `v0.34`.
+6. Su telefono controllare la barra fissa **Crea · Rivedi · Esporta**.
+7. In **Esporta → Strumenti tecnici**, eseguire la diagnostica.
+8. Se appare ancora una vecchia versione, premere **Aggiorna cache app**, chiudere e riaprire la pagina.
+9. Creare una nuova slide e verificare che il selettore mostri **Nickel Gothic v3**.
+10. Esportare **SVG per Affinity** e verificare che titolo e corpo siano due oggetti testuali diretti, modificabili senza aprire gruppi intermedi.

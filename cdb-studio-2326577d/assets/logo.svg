@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 349" role="img" aria-label="Critici da Bar">
+  <title>Critici da Bar</title>
+  <path fill="#1f27b8" d="M8 0h451l31 27v229l-3 3H173l-91 89h-4l-28-27v-61H28L0 232V8A8 8 0 0 1 8 0Z"/>
+  <path fill="#ff6f00" d="M8 7h451l2 2v216l-2 2H147l-86 84h-3v-84H8l-2-2V9l2-2Z"/>
+  <g fill="#1f27b8" font-family="Nickel Gothic v3" font-size="92" font-weight="400" text-anchor="middle">
+    <text x="235" y="108" textLength="402" lengthAdjust="spacingAndGlyphs">CRITICI</text>
+    <text x="232" y="200" textLength="397" lengthAdjust="spacingAndGlyphs">DA BAR</text>
+  </g>
+</svg>

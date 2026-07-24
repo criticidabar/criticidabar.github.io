@@ -12,12 +12,13 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CdB Studio">
   <title>CdB Studio</title>
-  <link rel="manifest" href="manifest.webmanifest?v=0.22.0">
+  <link rel="manifest" href="manifest.webmanifest?v=0.34.0">
+  <link rel="icon" href="assets/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Anybody:wdth,wght@50..150,100..900&family=Archivo:wdth,wght@62..125,100..900&family=Saira:wdth,wght@50..125,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=0.22.0">
+  <link rel="stylesheet" href="styles.css?v=0.34.0">
 </head>
 <body class="locked">
   <section id="authGate" class="auth-gate" aria-labelledby="authTitle">
@@ -38,7 +39,7 @@
 
   <div id="appShell" class="app-shell" hidden>
     <header class="topbar">
-      <div><strong>CdB Studio <small>v0.22</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
+      <div class="topbar-brand"><strong>CdB Studio <small>v0.34</small></strong><span id="saveStatus">salvato sul dispositivo</span></div>
       <div class="top-actions">
         <button id="undoBtn" class="icon-btn" type="button" aria-label="Annulla" title="Annulla">↶</button>
         <button id="redoBtn" class="icon-btn" type="button" aria-label="Ripeti" title="Ripeti">↷</button>
@@ -97,12 +98,20 @@
 
         <div id="tab-quick" class="tab-panel active quick-workspace">
           <section class="quick-progress-card">
-            <div><small>Carosello</small><strong id="quickProjectName">Nuovo carosello</strong></div>
-            <div class="draft-health-actions"><span id="draftScoreBadge" class="draft-score">—</span><button id="optimizeDraftBtn" type="button">Ottimizza bozza</button></div>
+            <div><small>Carosello</small><strong id="quickProjectName">Nuovo carosello</strong><span id="quickPresetBadge" class="preset-badge">Automatico</span></div>
+            <div class="draft-health-actions"><span id="draftScoreBadge" class="draft-score">—</span><button id="completeDraftBtn" class="primary" type="button">Completa bozza</button><button id="optimizeDraftBtn" type="button">Ottimizza</button></div>
             <div class="quick-progress-track"><span id="quickProgressBar"></span></div>
             <p id="quickProgressText">0 slide pronte</p>
             <p id="draftScoreText" class="draft-score-copy">La qualità automatica verrà valutata dopo la generazione.</p>
           </section>
+          <details id="reviewQueueDetails" class="quick-collapsible-card review-queue-details">
+            <summary><span>Coda di revisione</span><strong id="reviewQueueTitle">Analizzo la bozza…</strong></summary>
+            <section class="review-queue-card">
+              <div class="review-queue-copy"><p id="reviewQueueText">L’app ti porterà direttamente alle slide che richiedono attenzione.</p></div>
+              <div class="review-queue-actions"><button id="nextReviewIssueBtn" class="primary" type="button">Prossima da rivedere</button><button id="approveStrongSlidesBtn" type="button">Approva slide solide</button><button id="easyFixDraftBtn" type="button">Correggi automaticamente</button></div>
+              <div id="autopilotStatus" class="inline-status"></div>
+            </section>
+          </details>
           <section class="review-command-card">
             <div class="review-command-copy"><small>Revisione assistita</small><strong id="reviewCommandTitle">Controlla questa slide</strong><p id="reviewCommandText">Approva ciò che funziona. Cambia solo testo, immagine o layout quando serve.</p></div>
             <div class="review-command-actions assisted-actions">
@@ -113,7 +122,7 @@
             </div>
           </section>
 
-          <section class="quick-section">
+          <section class="quick-section quick-text-section">
             <div class="quick-section-head"><div><small>Slide corrente</small><strong id="quickSlideHeading">Slide 1</strong></div><span id="quickSlideState" class="quick-state">Da completare</span></div>
             <label class="field"><span>Titolo</span><textarea id="quickTitleInput" rows="3" placeholder="Titolo della slide"></textarea></label>
             <label class="field"><span>Testo</span><textarea id="quickSubtitleInput" rows="4" placeholder="Testo breve e leggibile"></textarea></label>
@@ -128,20 +137,24 @@
             <label class="field"><span>Ricerca pensata per questa slide</span><input id="quickImageQueryInput" type="search" placeholder="Titolo film + scena o concetto"></label>
             <div class="quick-action-grid">
               <button id="quickSuggestImageBtn" class="primary" type="button">Proponi immagine</button>
+              <button id="quickNextQueryBtn" type="button">Cambia ricerca</button>
               <button id="quickUploadImageBtn" type="button">Carica immagine</button>
               <button id="quickOpenCropBtn" type="button">Ritaglia</button>
               <button id="quickOpenAlternativesBtn" type="button">Alternative</button>
             </div>
           </section>
 
-          <section class="quick-section quick-slide-actions">
-            <div class="quick-action-grid">
-              <button id="quickDuplicateSlideBtn" type="button">Duplica slide</button>
-              <button id="quickDeleteSlideBtn" class="danger" type="button">Elimina slide</button>
-              <button id="quickAddSlideBtn" type="button">Aggiungi slide</button>
-              <button id="quickAdvancedBtn" type="button">Modifica avanzata</button>
-            </div>
-          </section>
+          <details class="quick-collapsible-card quick-slide-tools">
+            <summary><span>Gestisci la slide</span><strong>Duplica, elimina o modifica in dettaglio</strong></summary>
+            <section class="quick-section quick-slide-actions">
+              <div class="quick-action-grid">
+                <button id="quickDuplicateSlideBtn" type="button">Duplica slide</button>
+                <button id="quickDeleteSlideBtn" class="danger" type="button">Elimina slide</button>
+                <button id="quickAddSlideBtn" type="button">Aggiungi slide</button>
+                <button id="quickAdvancedBtn" type="button">Modifica avanzata</button>
+              </div>
+            </section>
+          </details>
 
           <section class="quick-finish-card">
             <div><small>Azioni sul carosello</small><strong>Chiudi il lavoro velocemente</strong></div>
@@ -200,9 +213,14 @@
             <details class="advanced-fields tmdb-settings"><summary>Configura TMDb</summary><label class="field"><span>API Read Access Token o API key</span><input id="tmdbApiKeyInput" type="password" autocomplete="off" placeholder="Resta solo su questo dispositivo"></label><div class="button-row"><button id="saveTmdbKeyBtn" type="button">Salva chiave</button><button id="clearTmdbKeyBtn" type="button">Rimuovi</button></div><p class="panel-note">La chiave resta nel browser e non viene salvata nel progetto o nel repository.</p><div class="tmdb-credit"><a href="https://www.themoviedb.org" target="_blank" rel="noopener"><img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="TMDB"></a><p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p></div></details>
             <div class="button-row"><button id="suggestCurrentImageBtn" class="primary" type="button">Proponi immagine</button><button id="searchImagesBtn" type="button">Mostra alternative</button></div>
             <div class="button-row"><button id="suggestAllImagesBtn" type="button">Proponi per tutte le slide</button><button id="openGoogleImagesBtn" type="button">Google Immagini ↗</button></div>
-            <label class="toggle-field compact-toggle"><input id="replaceSuggestedImagesCheckbox" type="checkbox"><span>Sostituisci anche le immagini già presenti</span></label>
-            <p class="panel-note">La query combina il tema generale con il contenuto della singola slide. Con TMDb configurato l’app privilegia poster, fondali, loghi e cast di film e serie; Wikimedia Commons resta il ripiego gratuito.</p>
+            <label class="toggle-field compact-toggle"><input id="replaceSuggestedImagesCheckbox" type="checkbox"><span>Sostituisci anche le immagini già presenti mantenendo il ritaglio</span></label>
+            <div class="image-policy-grid">
+              <label class="toggle-field compact-toggle"><input id="avoidDuplicateImagesCheckbox" type="checkbox" checked><span>Evita la stessa immagine in più slide</span></label>
+              <label class="toggle-field compact-toggle"><input id="cautiousImageModeCheckbox" type="checkbox"><span>Modalità prudente: automatismo solo da Commons</span></label>
+            </div>
+            <p class="panel-note image-rights-note">I risultati mostrano provenienza e indicazioni sulla licenza. “TMDb” non significa immagine libera: prima della pubblicazione controlla sempre la fonte. La modalità prudente riduce il rischio, ma non sostituisce la verifica della licenza.</p>
             <div id="imageSearchStatus" class="inline-status"></div>
+            <div id="currentImageSourceCard" class="current-image-source" hidden></div>
             <div id="imageSearchResults" class="image-grid"></div>
           </div>
           <div class="url-import">
@@ -246,7 +264,7 @@
 
         <div id="tab-style" class="tab-panel">
           <div class="control-grid">
-            <label class="field"><span>Font</span><select id="fontSelect"><option value="Anton">Anton</option><option value="Anybody">Anybody</option><option value="Archivo">Archivo</option><option value="Saira">Saira</option></select></label>
+            <label class="field"><span>Font</span><select id="fontSelect"><option value="Nickel Gothic v3">Nickel Gothic v3</option><option value="Anton">Anton</option><option value="Anybody">Anybody</option><option value="Archivo">Archivo</option><option value="Saira">Saira</option></select></label>
             <label class="field"><span>Colore personalizzato</span><input id="colorInput" type="color" value="#fff6ea"></label>
           </div>
           <section class="palette-card">
@@ -355,8 +373,15 @@
 
             <div class="generator-source-panel" data-generator-panel="instagram" hidden>
               <label class="field"><span>Link del post Instagram</span><input id="instagramUrlInput" type="url" inputmode="url" placeholder="https://www.instagram.com/p/…"></label>
-              <label class="file-btn import-file">In alternativa: carica screenshot<input id="ocrImagesInput" type="file" accept="image/*" multiple></label>
-              <p class="generator-help">Quando Instagram blocca la lettura diretta, usa gli screenshot: l’OCR recupera il testo.</p>
+              <p class="generator-help">L’app prova prima il link. Se Instagram blocca la lettura, passa automaticamente agli screenshot.</p>
+              <div id="instagramFallbackPanel" class="instagram-fallback-panel">
+                <div class="instagram-fallback-head"><div><strong>Screenshot del carosello</strong><small id="instagramScreenshotSummary">Nessuno screenshot caricato</small></div><button id="clearInstagramScreenshotsBtn" class="ghost" type="button">Svuota</button></div>
+                <label class="file-btn import-file primary-file">Carica screenshot in ordine<input id="ocrImagesInput" type="file" accept="image/*" multiple></label>
+                <p id="instagramDirectStatus" class="instagram-direct-status" aria-live="polite"></p>
+                <div id="instagramScreenshotQueue" class="instagram-screenshot-queue"></div>
+                <details class="instagram-caption-details"><summary>Caption o testo aggiuntivo</summary><label class="field"><span>Testo del post</span><textarea id="instagramCaptionInput" rows="5" placeholder="Facoltativo: incolla la caption se non compare negli screenshot"></textarea></label></details>
+                <p class="generator-help">Ogni screenshot diventa una slide nello stesso ordine. L’immagine originale resta come riferimento, ma non viene usata automaticamente come sfondo.</p>
+              </div>
             </div>
 
             <div class="generator-source-panel" data-generator-panel="json" hidden>
@@ -376,6 +401,7 @@
           </section>
 
           <section class="generator-options-card">
+            <label class="field generator-preset-field"><span>Tipo di carosello</span><select id="automationPresetSelect"><option value="auto" selected>Automatico · riconosci dal contenuto</option><option value="news">Notizia cinema</option><option value="review">Recensione</option><option value="debate">Opinione / dibattito</option><option value="returns">Ritorni / uscite</option><option value="list">Lista / classifica</option><option value="quote">Citazione / dichiarazione</option></select><small id="automationPresetHelp">L’app sceglie struttura, ritmo e template più adatti.</small></label>
             <div class="generator-options-head"><div><small>Impostazioni</small><strong>Lascia tutto su automatico per la bozza più veloce</strong></div><button id="generatorOptionsToggle" type="button">Personalizza</button></div>
             <div id="generatorOptionsBody" class="generator-options-body" hidden>
               <div class="control-grid import-controls">
@@ -400,7 +426,7 @@
             <summary>Controlla prima la scaletta</summary>
             <div class="generator-outline-actions"><button id="prepareEditorialOutlineBtn" type="button">Prepara scaletta</button><button id="createFromTextBtn" class="primary" type="button">Crea dalla scaletta</button></div>
             <section id="editorialOutlineCard" class="editorial-outline-card" hidden>
-              <div class="editorial-outline-head"><div><strong>Scaletta editoriale</strong><small id="editorialOutlineMetrics">—</small></div><button id="regenerateEditorialOutlineBtn" class="ghost" type="button">Rigenera</button></div>
+              <div class="editorial-outline-head"><div><strong>Scaletta editoriale</strong><small id="editorialOutlineMetrics">—</small></div><div class="editorial-outline-head-actions"><span id="editorialOutlineQuality" class="editorial-quality-pill">—</span><button id="polishEditorialOutlineBtn" type="button">Migliora testi</button><button id="regenerateEditorialOutlineBtn" class="ghost" type="button">Rigenera</button></div></div>
               <div id="editorialOutlineList" class="editorial-outline-list"></div>
             </section>
           </details>
@@ -423,18 +449,45 @@
             <label class="toggle-field compact-toggle"><input id="autoQualityInput" type="checkbox" checked><span>Controlla automaticamente prima dell’esportazione</span></label>
             <div id="qualityList" class="quality-list"><p class="panel-note">Il controllo verifica testi, margini, risoluzione delle immagini, logo, livelli nascosti e coerenza del progetto.</p></div>
           </section>
+          <details class="export-tools-details">
+            <summary><span>Strumenti tecnici</span><strong>Diagnostica, cache e rapporto errori</strong></summary>
+            <section class="diagnostics-card" aria-labelledby="diagnosticsTitle">
+              <div class="diagnostics-head">
+                <div><strong id="diagnosticsTitle">Diagnostica app</strong><small>Controlla browser, memoria, salvataggio, OCR, TMDb, immagini esterne, export e cache offline.</small></div>
+                <span id="diagnosticsStatusBadge" class="quality-status neutral">Mai eseguita</span>
+              </div>
+              <div class="diagnostics-actions">
+                <button id="runDiagnosticsBtn" class="primary" type="button">Esegui diagnostica</button>
+                <button id="copyDiagnosticsBtn" type="button" disabled>Copia rapporto</button>
+                <button id="downloadDiagnosticsBtn" type="button" disabled>Salva rapporto</button>
+                <button id="refreshAppCacheBtn" type="button">Aggiorna cache app</button>
+              </div>
+              <div id="diagnosticsSummary" class="inline-status">Nessun controllo eseguito su questo dispositivo.</div>
+              <div id="diagnosticsList" class="diagnostics-list">
+                <p class="panel-note">Il test non modifica il progetto. Può caricare il motore OCR e verificare la chiave TMDb configurata.</p>
+              </div>
+            </section>
+          </details>
+          <section class="project-transfer-card" aria-labelledby="projectTransferTitle">
+            <div class="project-transfer-copy"><strong id="projectTransferTitle">Continua su Mac o iPhone</strong><small>Il progetto portatile include immagini, ritagli, testi, livelli, layout e metadati. AirDrop o File è il passaggio più rapido.</small></div>
+            <div class="project-transfer-actions">
+              <button id="exportProjectBtn" class="primary" type="button">Salva progetto portatile</button>
+              <button id="shareProjectBtn" type="button">Condividi / AirDrop</button>
+              <label class="file-btn primary-file">Apri progetto<input id="projectInput" type="file" accept="application/zip,.zip,.cdbproject,.cdbproject.zip,application/json,.json,.cdb.json"></label>
+            </div>
+            <div id="projectTransferStatus" class="inline-status">Le immagini vengono incorporate nel file: il progetto non dipende dalla libreria del dispositivo.</div>
+            <button id="exportLightProjectBtn" class="text-button" type="button">Salva anche una copia JSON leggera</button>
+          </section>
           <div class="export-grid">
             <button id="exportPngBtn" class="primary" type="button">PNG slide</button>
             <button id="sharePngBtn" type="button">Condividi PNG</button>
-            <button id="exportSvgBtn" type="button">SVG modificabile</button>
+            <button id="exportSvgBtn" type="button">SVG per Affinity</button>
             <button id="exportFaithfulSvgBtn" type="button">SVG fedele</button>
             <button id="exportPdfBtn" type="button">PDF multipagina</button>
             <button id="exportAllBtn" class="primary" type="button">ZIP carosello</button>
-            <button id="exportProjectBtn" type="button">Salva progetto</button>
             <button id="exportCompleteBtn" class="primary" type="button">Pacchetto completo</button>
-            <label class="file-btn">Apri progetto<input id="projectInput" type="file" accept="application/json,.json,.cdb.json"></label>
           </div>
-          <p class="panel-note">Il PNG è il formato pronto da pubblicare. Il pacchetto completo contiene PNG, SVG modificabili, progetto e rapporto qualità. L’SVG fedele e il PDF fissano la resa grafica.</p>
+          <p class="panel-note">Il PNG è pronto da pubblicare. Lo SVG per Affinity mantiene titolo e testo come blocchi modificabili e incorpora Nickel Gothic. Il pacchetto completo contiene anche PNG, SVG e rapporto qualità.</p>
         </div>
       </section>
     </main>
@@ -471,8 +524,15 @@
   </dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="app.js?v=0.22.0"></script>
-  <script src="auth.js?v=0.22.0"></script>
+  <script src="js/config.js?v=0.34.0"></script>
+  <script src="js/runtime.js?v=0.34.0"></script>
+  <script src="js/state.js?v=0.34.0"></script>
+  <script src="js/engine.js?v=0.34.0"></script>
+  <script src="js/render.js?v=0.34.0"></script>
+  <script src="js/images.js?v=0.34.0"></script>
+  <script src="js/editorial.js?v=0.34.0"></script>
+  <script src="js/export.js?v=0.34.0"></script>
+  <script src="app.js?v=0.34.0"></script>
+  <script src="auth.js?v=0.34.0"></script>
 </body>
 </html>

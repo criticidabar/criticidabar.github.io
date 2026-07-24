@@ -1,0 +1,17 @@
+{
+  "version": "0.30.0",
+  "slides": [
+    {"slideType":"cover","postTitle":"Fixture legacy v0.30","mainText":"CINEMA E MEMORIA","subText":"Una fixture sintetica per verificare la migrazione."},
+    {"slideType":"content","mainText":"IL PUNTO CENTRALE","subText":"Il vecchio formato client deve diventare una slide normalizzata."},
+    {"slideType":"end","mainText":"VOI COSA NE PENSATE?","subText":"Scrivetecelo nei commenti."}
+  ],
+  "client": {
+    "order": [0,1,2],
+    "globalNum": true,
+    "st": {
+      "0":{"tpl":{"f":"c","v":"copertina"},"imgT":{"dx":12,"dy":-8,"s":1.1}},
+      "1":{"tpl":{"f":"c","v":"corpo"},"texts":[{"t":"TESTO LIBERO LEGACY","x":540,"y":1100,"fs":38,"c":"%%ORANGE%%"}]},
+      "2":{"tpl":{"f":"c","v":"finale"}}
+    }
+  }
+}
