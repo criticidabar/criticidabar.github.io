@@ -81,11 +81,15 @@ Entrambi inseriamo nella nostra Top 5 **Oldboy**, **Shutter Island** e **The Pre
 
 Non viene spiegata la natura dei singoli colpi di scena. Tuttavia, sapere che un film è stato selezionato per il suo plot twist può già rappresentare una piccola anticipazione.
 
+## La vostra classifica
+
+Quale film avreste messo al primo posto? E quale titolo manca completamente dalla nostra selezione?
+
+Scrivetecelo nei commenti oppure guardate e condividete il [Reel su Instagram](https://www.instagram.com/reel/DceDYPniDKf/).
+
 <details class="ep-transcript">
 <summary>Trascrizione completa dell'episodio</summary>
 <div class="ep-transcript-body" markdown="1">
-
-*Trascrizione editoriale ripulita da esitazioni, ripetizioni e interruzioni, senza modificare il senso della conversazione.*
 
 ### Introduzione
 
@@ -205,9 +209,3 @@ Non viene spiegata la natura dei singoli colpi di scena. Tuttavia, sapere che un
 
 </div>
 </details>
-
-## La vostra classifica
-
-Quale film avreste messo al primo posto? E quale titolo manca completamente dalla nostra selezione?
-
-Scrivetecelo nei commenti oppure guardate e condividete il [Reel su Instagram](https://www.instagram.com/reel/DceDYPniDKf/).
