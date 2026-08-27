@@ -9,26 +9,15 @@ embed: '<iframe width="560" height="315" src="https://www.youtube.com/embed/SNe-
 
 Qual è il film con il **miglior plot twist di sempre**?
 
-Fra e Sal hanno provato a mettere in ordine dieci titoli celebri per i loro colpi di scena. Il risultato non è una classifica condivisa, ma due Top 10 molto diverse: da **Oldboy** a **Fight Club**, passando per **Seven**, **Shutter Island**, **The Prestige** e **I soliti sospetti**.
+Fra e Sal hanno provato a mettere in ordine dieci titoli celebri per i loro colpi di scena. Il risultato? Due classifiche molto diverse: da **Oldboy** a **Fight Club**, passando per **Seven**, **Shutter Island**, **The Prestige** e **I soliti sospetti**.
 
 > **Avviso spoiler:** durante l'episodio non spieghiamo i colpi di scena, ma la presenza stessa di alcuni titoli potrebbe anticipare che il film contiene una svolta importante.
 
 Il video è disponibile anche come [Reel su Instagram](https://www.instagram.com/reel/DceDYPniDKf/).
 
-## I film della sfida
+## Le nostre Top 10
 
-- Oldboy
-- Shutter Island
-- Gone Girl – L'amore bugiardo
-- I soliti sospetti
-- The Others
-- Saw – L'enigmista
-- The Prestige
-- Seven
-- Fight Club
-- Profondo rosso
-
-## La classifica di Sal
+### La classifica di Sal
 
 1. **Oldboy**
 2. **I soliti sospetti**
@@ -41,7 +30,7 @@ Il video è disponibile anche come [Reel su Instagram](https://www.instagram.com
 9. **Fight Club**
 10. **Profondo rosso**
 
-## La classifica di Fra
+### La classifica di Fra
 
 1. **Fight Club**
 2. **Oldboy**
@@ -54,7 +43,47 @@ Il video è disponibile anche come [Reel su Instagram](https://www.instagram.com
 9. **Saw – L'enigmista**
 10. **Profondo rosso**
 
-## Trascrizione dell'episodio
+## Oldboy e Fight Club: due numeri uno diversi
+
+La prima grande divisione arriva proprio in cima. Per Sal il miglior plot twist della lista è quello di **Oldboy**, che finisce senza esitazioni al primo posto. Fra lo mette comunque altissimo, al secondo, ma riserva la vetta a **Fight Club**.
+
+Ed è proprio *Fight Club* uno dei titoli su cui le due classifiche divergono di più: primo per Fra, soltanto nono per Sal.
+
+## Shutter Island e The Prestige ci mettono quasi d'accordo
+
+Ci sono però film su cui le distanze si accorciano. **Shutter Island** è terzo per Sal e quarto per Fra: entrambi lo consideriamo uno dei colpi di scena più riusciti della selezione, anche se per Fra alcuni elementi possono risultare leggermente prevedibili.
+
+Situazione simile per **The Prestige**: quarto posto per Sal, quinto per Fra. Un film amatissimo da entrambi, anche quando il criterio diventa molto specifico: non il film migliore in assoluto, ma il plot twist più efficace.
+
+## Seven è l'altro grande punto di rottura
+
+**Seven** occupa il terzo posto nella classifica di Fra, mentre Sal lo lascia all'ottavo. Non perché lo consideri un film meno riuscito, ma perché secondo lui il colpo di scena non è necessariamente l'elemento che definisce maggiormente il film.
+
+È uno dei criteri che emerge durante tutta la sfida: per salire in classifica non basta essere un grande film. Conta quanto il twist riesca davvero a sorprendere, quanto sia prevedibile e quanto sia centrale nell'esperienza complessiva.
+
+## Quando un plot twist funziona davvero?
+
+Nel confronto tornano continuamente tre elementi: **sorpresa, prevedibilità e peso del colpo di scena nel film**. È per questo che titoli molto apprezzati possono finire in posizioni basse, mentre altri vengono premiati soprattutto per la capacità di ribaltare ciò che lo spettatore pensava di aver capito.
+
+La classifica non vuole quindi stabilire quali siano i dieci film migliori tra quelli citati, ma quali abbiano, secondo noi, i **plot twist più memorabili**.
+
+## Domande frequenti
+
+### Qual è il film al primo posto?
+
+Per Sal il miglior plot twist è quello di **Oldboy**. Per Fra, invece, il primo posto va a **Fight Club**.
+
+### Quali film mettiamo entrambi nella Top 5?
+
+Entrambi inseriamo nella nostra Top 5 **Oldboy**, **Shutter Island** e **The Prestige**.
+
+### Il video contiene spoiler?
+
+Non viene spiegata la natura dei singoli colpi di scena. Tuttavia, sapere che un film è stato selezionato per il suo plot twist può già rappresentare una piccola anticipazione.
+
+<details class="ep-transcript">
+<summary>Trascrizione completa dell'episodio</summary>
+<div class="ep-transcript-body" markdown="1">
 
 *Trascrizione editoriale ripulita da esitazioni, ripetizioni e interruzioni, senza modificare il senso della conversazione.*
 
@@ -174,19 +203,8 @@ Il video è disponibile anche come [Reel su Instagram](https://www.instagram.com
 
 **Fra:** La mia invece è: *Fight Club*, *Oldboy*, *Seven*, *Shutter Island*, *The Prestige*, *I soliti sospetti*, *Gone Girl*, *The Others*, *Saw* e *Profondo rosso*.
 
-## Domande frequenti
-
-### Qual è il film al primo posto?
-
-Per Sal il miglior plot twist è quello di **Oldboy**. Per Fra, invece, il primo posto va a **Fight Club**.
-
-### Quali film mettono entrambi nella Top 5?
-
-Entrambi inseriscono nella propria Top 5 **Oldboy**, **Shutter Island** e **The Prestige**.
-
-### Il video contiene spoiler?
-
-Non viene spiegata la natura dei singoli colpi di scena. Tuttavia, sapere che un film è stato selezionato per il suo plot twist può già rappresentare una piccola anticipazione.
+</div>
+</details>
 
 ## La vostra classifica
 
