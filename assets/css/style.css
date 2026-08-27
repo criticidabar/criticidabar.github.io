@@ -37,6 +37,7 @@ a:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   padding: 1.1rem 1.4rem;
   border-bottom: 3px solid var(--blu);
 }
@@ -46,14 +47,22 @@ a:focus-visible {
   letter-spacing: .06em;
   text-decoration: none;
   color: var(--blu);
+  flex: 0 0 auto;
 }
 .wordmark span { color: var(--arancio); }
+.topnav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: .45rem 1.4rem;
+}
 .topnav a {
   font-family: var(--display);
   font-size: 1.15rem;
   letter-spacing: .08em;
   text-decoration: none;
-  margin-left: 1.4rem;
+  white-space: nowrap;
 }
 .topnav a:hover { color: var(--arancio); }
 
@@ -251,7 +260,9 @@ a:focus-visible {
 
 /* ---------- Mobile ---------- */
 @media (max-width: 540px) {
-  .topbar { flex-direction: column; gap: .5rem; }
+  .topbar { flex-direction: column; gap: .7rem; }
+  .topnav { justify-content: center; gap: .35rem 1rem; }
+  .topnav a { font-size: 1.05rem; }
   .menu li .voce { font-size: 1.25rem; }
   .menu li { flex-wrap: wrap; }
 }
