@@ -184,6 +184,48 @@ a:focus-visible {
 .ep-embed { margin: 1.5rem 0; }
 .ep-embed iframe { width: 100%; border: 3px solid var(--blu); border-radius: 12px; }
 .ep-body p { margin: 1rem 0; }
+
+/* Trascrizione completa: presente nella pagina ma chiusa di default */
+.ep-transcript {
+  margin: 2.4rem 0;
+  border: 3px solid var(--blu);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.ep-transcript summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 1rem 1.15rem .85rem;
+  background: var(--blu);
+  color: var(--panna);
+  font-family: var(--display);
+  font-size: 1.35rem;
+  letter-spacing: .05em;
+  user-select: none;
+}
+.ep-transcript summary::-webkit-details-marker { display: none; }
+.ep-transcript summary::after {
+  content: "+";
+  float: right;
+  color: var(--arancio);
+  font-family: var(--body);
+  font-weight: 700;
+}
+.ep-transcript[open] summary::after { content: "−"; }
+.ep-transcript summary:focus-visible {
+  outline: 3px solid var(--arancio);
+  outline-offset: -3px;
+}
+.ep-transcript-body {
+  padding: .5rem 1.15rem 1.1rem;
+}
+.ep-transcript-body h3 {
+  margin-top: 1.5rem;
+  font-family: var(--display);
+  letter-spacing: .04em;
+  font-size: 1.35rem;
+}
+
 .ep-cta {
   margin-top: 3rem;
   padding-top: 1.6rem;
