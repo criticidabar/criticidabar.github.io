@@ -13,3 +13,6 @@ collections:
   episodi:
     output: true
     permalink: /episodi/:name/
+  clips:
+    output: true
+    permalink: /clip/:name/
